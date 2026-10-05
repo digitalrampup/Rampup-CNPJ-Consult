@@ -1,0 +1,8 @@
+{
+  "name": "Rampup CNPJ Consult",
+  "description": "Modern React interface to query, format, and visualize detailed Brazilian CNPJ data with dynamic JSON inspection tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
