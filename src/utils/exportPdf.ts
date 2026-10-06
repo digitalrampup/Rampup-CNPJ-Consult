@@ -135,7 +135,33 @@ export function generateCompanyPdf(data: CnpjData): void {
   // Row 9: Situação Cadastral
   drawField('SITUAÇÃO CADASTRAL', situacao.toUpperCase(), margin, y, contentWidth * 0.5);
   drawField('DATA DA SITUAÇÃO CADASTRAL', formatDate(dataSituacao), margin + contentWidth * 0.5, y, contentWidth * 0.5);
-  y += 14;
+  y += 11;
+
+  // Row 10: Simples Nacional & MEI
+  const simples = data.simples;
+  const isSimplesOptante =
+    simples?.simples === true ||
+    (typeof simples?.simples === 'string' &&
+      (simples.simples.toLowerCase() === 'sim' ||
+        (simples.simples.toLowerCase().includes('optante') &&
+          !simples.simples.toLowerCase().includes('não optante'))));
+  const isMeiOptante =
+    simples?.mei === true ||
+    (typeof simples?.mei === 'string' &&
+      (simples.mei.toLowerCase() === 'sim' ||
+        (simples.mei.toLowerCase().includes('sim') && !simples.mei.toLowerCase().includes('não')) ||
+        (simples.mei.toLowerCase().includes('enquadrado') && !simples.mei.toLowerCase().includes('não enquadrado'))));
+
+  const simplesText = isSimplesOptante
+    ? `OPTANTE${simples?.data_opcao_simples ? ` (Desde ${formatDate(simples.data_opcao_simples)})` : ''}`
+    : 'NÃO OPTANTE';
+  const meiText = isMeiOptante
+    ? `ENQUADRADO SIMEI${simples?.data_opcao_mei ? ` (Desde ${formatDate(simples.data_opcao_mei)})` : ''}`
+    : 'NÃO ENQUADRADO';
+
+  drawField('OPÇÃO PELO SIMPLES NACIONAL', simplesText, margin, y, contentWidth * 0.5);
+  drawField('OPÇÃO PELO MEI (SIMEI)', meiText, margin + contentWidth * 0.5, y, contentWidth * 0.5);
+  y += 13;
 
   // Quadro Societário (QSA)
   if (socios.length > 0) {

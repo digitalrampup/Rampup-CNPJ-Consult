@@ -14,13 +14,14 @@ import { ErrorAlert } from './components/ErrorAlert';
 import { EmptyState } from './components/EmptyState';
 import { SearchHistory, HistoryItem } from './components/SearchHistory';
 import { CnpjData } from './types/cnpj';
-import { fetchCnpj, ApiError } from './utils/api';
+import { fetchCnpj, ApiError, ApiProvider } from './utils/api';
 import { cleanDigits } from './utils/formatters';
 import { searchCompanies, queryCompanySearchApi } from './utils/companyDatabase';
 
 export default function App() {
   // Always open in the light version of the application
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [apiProvider, setApiProvider] = useState<ApiProvider>('brasilapi');
 
   const [activeTab, setActiveTab] = useState<'summary' | 'dynamic' | 'json'>('summary');
   const [currentCnpj, setCurrentCnpj] = useState<string>('');
@@ -37,7 +38,7 @@ export default function App() {
     }
   });
 
-  // In-memory cache for the session to prevent hitting the 3 req/min rate limit repeatedly
+  // In-memory cache for the session
   const cacheRef = useRef<Map<string, CnpjData>>(new Map());
 
   // Rate limit countdown timer
@@ -79,9 +80,10 @@ export default function App() {
     return () => clearInterval(interval);
   }, [rateLimitTimer]);
 
-  const handleSearch = async (targetQuery: string) => {
+  const handleSearch = async (targetQuery: string, providerOverride?: ApiProvider) => {
     const rawClean = cleanDigits(targetQuery);
     let cnpjToFetch = rawClean;
+    const activeProvider = providerOverride || apiProvider;
 
     // If query is not a 14-digit CNPJ, attempt resolution
     if (rawClean.length !== 14) {
@@ -118,9 +120,10 @@ export default function App() {
     setError(null);
     setCurrentCnpj(cnpjToFetch);
 
-    // Check cache first
-    if (cacheRef.current.has(cnpjToFetch)) {
-      setData(cacheRef.current.get(cnpjToFetch)!);
+    // Check cache first (cached per provider)
+    const cacheKey = `${cnpjToFetch}_${activeProvider}`;
+    if (cacheRef.current.has(cacheKey)) {
+      setData(cacheRef.current.get(cacheKey)!);
       setIsLoading(false);
       return;
     }
@@ -128,9 +131,9 @@ export default function App() {
     setIsLoading(true);
 
     try {
-      const result = await fetchCnpj(cnpjToFetch);
+      const result = await fetchCnpj(cnpjToFetch, activeProvider);
       setData(result);
-      cacheRef.current.set(cnpjToFetch, result);
+      cacheRef.current.set(cacheKey, result);
 
       // Add to history
       const razao = result.razao_social || result.estabelecimento?.nome_fantasia || 'Empresa';
@@ -210,11 +213,13 @@ export default function App() {
             initialValue={currentCnpj}
             rateLimitTimer={rateLimitTimer}
             theme={theme}
+            apiProvider={apiProvider}
+            onProviderChange={setApiProvider}
           />
 
           <SearchHistory
             items={history}
-            onSelect={handleSearch}
+            onSelect={(cnpj) => handleSearch(cnpj, apiProvider)}
             onClear={handleClearHistory}
             currentCnpj={currentCnpj}
             theme={theme}
@@ -225,10 +230,14 @@ export default function App() {
         {error && (
           <ErrorAlert
             error={error}
-            onRetry={() => handleSearch(currentCnpj)}
+            onRetry={() => handleSearch(currentCnpj, apiProvider)}
             onDismiss={() => setError(null)}
             rateLimitTimer={rateLimitTimer}
             theme={theme}
+            onSwitchProvider={(newProvider) => {
+              setApiProvider(newProvider);
+              handleSearch(currentCnpj, newProvider);
+            }}
           />
         )}
 
@@ -286,7 +295,8 @@ export default function App() {
             />
             <p>
               Rampup CNPJ Consult · Dados oficiais da Receita Federal do Brasil via{' '}
-              <span className="font-mono text-emerald-600 dark:text-emerald-500">publica.cnpj.ws</span>
+              <span className="font-mono text-emerald-600 dark:text-emerald-500 font-semibold">BrasilAPI</span> e{' '}
+              <span className="font-mono text-emerald-600 dark:text-emerald-500 font-semibold">CNPJ.ws</span>
             </p>
           </div>
           <div className="flex items-center gap-4 text-xs">

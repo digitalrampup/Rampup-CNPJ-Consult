@@ -87,8 +87,18 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
 
   // Simples Nacional
   const simples = data.simples;
-  const isSimplesOptante = simples?.simples?.toLowerCase() === 'sim';
-  const isMeiOptante = simples?.mei?.toLowerCase() === 'sim';
+  const isSimplesOptante =
+    simples?.simples === true ||
+    (typeof simples?.simples === 'string' &&
+      (simples.simples.toLowerCase() === 'sim' ||
+        (simples.simples.toLowerCase().includes('optante') &&
+          !simples.simples.toLowerCase().includes('não optante'))));
+  const isMeiOptante =
+    simples?.mei === true ||
+    (typeof simples?.mei === 'string' &&
+      (simples.mei.toLowerCase() === 'sim' ||
+        (simples.mei.toLowerCase().includes('sim') && !simples.mei.toLowerCase().includes('não')) ||
+        (simples.mei.toLowerCase().includes('enquadrado') && !simples.mei.toLowerCase().includes('não enquadrado'))));
 
   // Capital & Socios
   const capitalSocial = formatCurrency(data.capital_social);
@@ -173,6 +183,15 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
               <span className={`text-xs ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                 Porte: <strong className={isDark ? 'text-slate-200 font-semibold' : 'text-slate-900 font-semibold'}>{porte}</strong>
               </span>
+
+              {data._apiSource && (
+                <>
+                  <span className="text-slate-400">·</span>
+                  <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md border bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20">
+                    Fonte: {data._apiSource}
+                  </span>
+                </>
+              )}
             </div>
 
             <h1 className={`text-xl sm:text-2xl font-bold tracking-tight break-words ${isDark ? 'text-white' : 'text-slate-900'}`}>
@@ -577,6 +596,27 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
                 )}
               </div>
             </div>
+
+            {/* Regime Tributário Lucro Real / Presumido (BrasilAPI) */}
+            {Array.isArray(data.regime_tributario) && data.regime_tributario.length > 0 && (
+              <div className={`p-3 rounded-lg border space-y-1.5 ${isDark ? 'bg-slate-950/40 border-slate-800/80' : 'bg-slate-50 border-slate-200'}`}>
+                <span className={`text-xs font-semibold block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                  Histórico de Tributação ECF (BrasilAPI)
+                </span>
+                <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  {data.regime_tributario.slice(0, 4).map((reg: any, idx: number) => (
+                    <span
+                      key={idx}
+                      className={`text-[11px] font-medium px-2 py-0.5 rounded border ${
+                        isDark ? 'bg-slate-900 border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-800'
+                      }`}
+                    >
+                      <strong className="text-emerald-600 dark:text-emerald-400">{reg.ano}:</strong> {reg.forma_de_tributacao}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

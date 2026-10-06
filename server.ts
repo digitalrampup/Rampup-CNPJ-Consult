@@ -149,6 +149,41 @@ app.get('/api/cnpj-proxy/:cnpj', async (req, res) => {
   }
 });
 
+// 3. API Proxy Route: Proxy requests to brasilapi.com.br with CORS bypass
+app.get('/api/brasilapi-proxy/:cnpj', async (req, res) => {
+  const cleanCnpj = req.params.cnpj.replace(/\D/g, '');
+
+  if (cleanCnpj.length !== 14) {
+    return res.status(400).json({ message: 'CNPJ inválido' });
+  }
+
+  const targetUrl = `https://brasilapi.com.br/api/cnpj/v1/${cleanCnpj}`;
+
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+
+    const apiRes = await fetch(targetUrl, {
+      method: 'GET',
+      headers: {
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        Accept: 'application/json',
+      },
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
+
+    const data = await apiRes.json();
+    return res.status(apiRes.status).json(data);
+  } catch (err: any) {
+    if (err.name === 'AbortError') {
+      return res.status(504).json({ message: 'Tempo limite esgotado ao consultar a BrasilAPI.' });
+    }
+    return res.status(500).json({ message: 'Erro ao conectar à BrasilAPI.' });
+  }
+});
+
 // Mount Vite or static server
 async function startServer() {
   const isProd = process.env.NODE_ENV === 'production';

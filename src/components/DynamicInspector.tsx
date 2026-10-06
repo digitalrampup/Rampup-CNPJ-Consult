@@ -100,8 +100,18 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
 
   // Taxation
   const simples = data?.simples;
-  const isSimplesOptante = simples?.simples?.toLowerCase() === 'sim';
-  const isMeiOptante = simples?.mei?.toLowerCase() === 'sim';
+  const isSimplesOptante =
+    simples?.simples === true ||
+    (typeof simples?.simples === 'string' &&
+      (simples.simples.toLowerCase() === 'sim' ||
+        (simples.simples.toLowerCase().includes('optante') &&
+          !simples.simples.toLowerCase().includes('não optante'))));
+  const isMeiOptante =
+    simples?.mei === true ||
+    (typeof simples?.mei === 'string' &&
+      (simples.mei.toLowerCase() === 'sim' ||
+        (simples.mei.toLowerCase().includes('sim') && !simples.mei.toLowerCase().includes('não')) ||
+        (simples.mei.toLowerCase().includes('enquadrado') && !simples.mei.toLowerCase().includes('não enquadrado'))));
 
   // Inscrições Estaduais
   const inscricoes: any[] = est.inscricoes_estaduais || data?.inscricoes_estaduais || [];
@@ -162,6 +172,14 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
               <span className={`font-mono text-xs font-semibold ${isDark ? 'text-emerald-400' : 'text-emerald-700'}`}>
                 {formattedCnpj}
               </span>
+              {data?._apiSource && (
+                <>
+                  <span className="text-slate-400">·</span>
+                  <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md border bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20">
+                    Fonte: {data._apiSource}
+                  </span>
+                </>
+              )}
             </div>
             <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
               Ficha oficial com todos os campos cadastrais, fiscais e societários da Receita Federal
@@ -814,6 +832,42 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                     </p>
                   )}
                 </div>
+
+                {/* Regime Tributário (Lucro Real / Presumido da BrasilAPI) */}
+                {Array.isArray(data?.regime_tributario) && data.regime_tributario.length > 0 && (
+                  <div
+                    className={`col-span-1 sm:col-span-2 p-4 rounded-xl border space-y-2.5 ${
+                      isDark ? 'bg-slate-950/40 border-slate-800' : 'bg-white border-slate-200'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold text-slate-500">
+                        Histórico de Forma de Tributação (BrasilAPI / ECF Receita Federal)
+                      </span>
+                      <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
+                        {data.regime_tributario.length} exercício(s)
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {data.regime_tributario.slice(0, 8).map((reg: any, rIdx: number) => (
+                        <div
+                          key={rIdx}
+                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border ${
+                            isDark
+                              ? 'bg-slate-900 border-slate-700 text-slate-200'
+                              : 'bg-slate-50 border-slate-200 text-slate-800'
+                          }`}
+                        >
+                          <span className="font-bold text-emerald-600 dark:text-emerald-400">{reg.ano}:</span>
+                          <span>{reg.forma_de_tributacao}</span>
+                          {reg.quantidade_de_escrituracoes > 1 && (
+                            <span className="text-[10px] text-slate-400">({reg.quantidade_de_escrituracoes} escrit.)</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}

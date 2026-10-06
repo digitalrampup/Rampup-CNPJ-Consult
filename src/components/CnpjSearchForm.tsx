@@ -14,13 +14,16 @@ import {
   queryCompanySearchApi,
   CompanySearchRecord,
 } from '../utils/companyDatabase';
+import { ApiProvider } from '../utils/api';
 
 interface CnpjSearchFormProps {
-  onSearch: (cnpj: string) => void;
+  onSearch: (cnpj: string, provider?: ApiProvider) => void;
   isLoading: boolean;
   initialValue?: string;
   rateLimitTimer?: number | null;
   theme?: 'light' | 'dark';
+  apiProvider?: ApiProvider;
+  onProviderChange?: (provider: ApiProvider) => void;
 }
 
 const SAMPLE_CNPJS = [
@@ -39,6 +42,8 @@ export function CnpjSearchForm({
   initialValue = '',
   rateLimitTimer,
   theme = 'light',
+  apiProvider = 'auto',
+  onProviderChange,
 }: CnpjSearchFormProps) {
   const [searchMode, setSearchMode] = useState<'cnpj' | 'razao' | 'empresario'>('cnpj');
   const [value, setValue] = useState(initialValue ? maskCnpj(initialValue) : '');
@@ -83,10 +88,10 @@ export function CnpjSearchForm({
     const rawVal = e.target.value;
     setSearchFeedback(null);
 
-    // If typing numbers in CNPJ mode
+    const hasLetters = /[a-zA-Z]/.test(rawVal);
     const looksNumeric = /^[\d\.\-\/]*$/.test(rawVal) && rawVal.length > 0;
 
-    if (searchMode === 'cnpj' && looksNumeric) {
+    if (searchMode === 'cnpj' && looksNumeric && !hasLetters) {
       const masked = maskCnpj(rawVal);
       setValue(masked);
       setIsDropdownOpen(false);
@@ -94,7 +99,9 @@ export function CnpjSearchForm({
     } else {
       setValue(rawVal);
       if (rawVal.trim().length >= 2) {
-        const results = searchCompanies(rawVal, searchMode);
+        // Search across all name/partner fields
+        const effectiveMode = searchMode === 'cnpj' ? 'all' : searchMode;
+        const results = searchCompanies(rawVal, effectiveMode);
         setSearchResults(results);
         setIsDropdownOpen(results.length > 0);
       } else {
@@ -116,8 +123,7 @@ export function CnpjSearchForm({
   const handleSelectCompany = (comp: CompanySearchRecord) => {
     setValue(formatCnpj(comp.cnpj));
     setIsDropdownOpen(false);
-    setSearchFeedback(null);
-    onSearch(comp.cnpj);
+    onSearch(comp.cnpj, apiProvider);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -128,7 +134,7 @@ export function CnpjSearchForm({
     // 1. Direct CNPJ Submission (14 digits)
     if (rawDigits.length === 14) {
       setIsDropdownOpen(false);
-      onSearch(rawDigits);
+      onSearch(rawDigits, apiProvider);
       return;
     }
 
@@ -139,17 +145,19 @@ export function CnpjSearchForm({
       return;
     }
 
-    // First check in-memory local matches
-    const localMatches = searchCompanies(trimmed, searchMode);
-    if (localMatches.length === 1) {
-      handleSelectCompany(localMatches[0]);
-      return;
-    }
+    const effectiveMode = searchMode === 'cnpj' ? 'all' : searchMode;
 
-    if (localMatches.length > 1) {
-      setSearchResults(localMatches);
-      setIsDropdownOpen(true);
-      setSearchFeedback(`${localMatches.length} empresas encontradas. Clique na opção desejada para consultar:`);
+    // First check in-memory local catalog matches
+    const localMatches = searchCompanies(trimmed, effectiveMode);
+    if (localMatches.length > 0) {
+      // Auto-select and consult the best match immediately!
+      const topMatch = localMatches[0];
+      handleSelectCompany(topMatch);
+
+      if (localMatches.length > 1) {
+        setSearchResults(localMatches);
+        setSearchFeedback(`Consultando ${topMatch.razaoSocial}. ${localMatches.length - 1} outra(s) correspondência(s) encontrada(s):`);
+      }
       return;
     }
 
@@ -158,13 +166,14 @@ export function CnpjSearchForm({
     setIsDropdownOpen(false);
 
     try {
-      const onlineMatches = await queryCompanySearchApi(trimmed, searchMode);
-      if (onlineMatches.length === 1) {
-        handleSelectCompany(onlineMatches[0]);
-      } else if (onlineMatches.length > 1) {
-        setSearchResults(onlineMatches);
-        setIsDropdownOpen(true);
-        setSearchFeedback(`${onlineMatches.length} resultados encontrados. Selecione a empresa abaixo:`);
+      const onlineMatches = await queryCompanySearchApi(trimmed, effectiveMode);
+      if (onlineMatches.length > 0) {
+        const topOnline = onlineMatches[0];
+        handleSelectCompany(topOnline);
+        if (onlineMatches.length > 1) {
+          setSearchResults(onlineMatches);
+          setSearchFeedback(`Consultando ${topOnline.razaoSocial}. ${onlineMatches.length - 1} outro(s) resultado(s) disponível(is):`);
+        }
       } else {
         setSearchFeedback(
           `Nenhuma empresa ou sócio localizado para "${trimmed}". Tente informar o CNPJ diretamente com 14 dígitos ou verifique a grafia.`
@@ -186,65 +195,123 @@ export function CnpjSearchForm({
   };
 
   const getPlaceholder = () => {
-    if (searchMode === 'cnpj') return 'Digite o CNPJ (ex: 00.000.000/0001-91)';
-    if (searchMode === 'razao') return 'Digite a Razão Social ou Nome Fantasia (ex: Magazine Luiza, Renner, SBT)';
+    if (searchMode === 'cnpj') return 'Digite o CNPJ ou Nome da Empresa/Sócio...';
+    if (searchMode === 'razao') return 'Digite a Razão Social ou Nome Fantasia (ex: iFood, Vale, Renner, Magalu)';
     return 'Digite o Nome do Empresário ou Sócio (ex: Silvio Santos, Luiza Trajano, Lemann)';
   };
 
   return (
     <div className="w-full space-y-3">
-      {/* Mode Selector Tabs */}
-      <div
-        className={`flex flex-wrap items-center gap-1.5 p-1 rounded-xl w-fit border ${
-          isDark
-            ? 'bg-slate-900/60 border-slate-800'
-            : 'bg-slate-100 border-slate-200'
-        }`}
-      >
-        <button
-          type="button"
-          onClick={() => handleModeSwitch('cnpj')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
-            searchMode === 'cnpj'
-              ? 'bg-emerald-600 text-white shadow-sm'
-              : isDark
-              ? 'text-slate-400 hover:text-white'
-              : 'text-slate-600 hover:text-slate-900'
+      {/* Top Controls: Mode Selector & API Provider Switcher */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        {/* Mode Selector Tabs */}
+        <div
+          className={`flex flex-wrap items-center gap-1.5 p-1 rounded-xl w-fit border ${
+            isDark ? 'bg-slate-900/60 border-slate-800' : 'bg-slate-100 border-slate-200'
           }`}
         >
-          <BuildingIcon className="w-3.5 h-3.5" />
-          <span>Por CNPJ</span>
-        </button>
+          <button
+            type="button"
+            onClick={() => handleModeSwitch('cnpj')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
+              searchMode === 'cnpj'
+                ? 'bg-emerald-600 text-white shadow-sm'
+                : isDark
+                ? 'text-slate-400 hover:text-white'
+                : 'text-slate-700 font-semibold hover:text-slate-950'
+            }`}
+          >
+            <BuildingIcon className="w-3.5 h-3.5" />
+            <span>Por CNPJ</span>
+          </button>
 
-        <button
-          type="button"
-          onClick={() => handleModeSwitch('razao')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
-            searchMode === 'razao'
-              ? 'bg-emerald-600 text-white shadow-sm'
-              : isDark
-              ? 'text-slate-400 hover:text-white'
-              : 'text-slate-600 hover:text-slate-900'
-          }`}
-        >
-          <BuildingIcon className="w-3.5 h-3.5" />
-          <span>Por Razão Social / Fantasia</span>
-        </button>
+          <button
+            type="button"
+            onClick={() => handleModeSwitch('razao')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
+              searchMode === 'razao'
+                ? 'bg-emerald-600 text-white shadow-sm'
+                : isDark
+                ? 'text-slate-400 hover:text-white'
+                : 'text-slate-700 font-semibold hover:text-slate-950'
+            }`}
+          >
+            <BuildingIcon className="w-3.5 h-3.5" />
+            <span>Por Razão Social / Fantasia</span>
+          </button>
 
-        <button
-          type="button"
-          onClick={() => handleModeSwitch('empresario')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
-            searchMode === 'empresario'
-              ? 'bg-emerald-600 text-white shadow-sm'
-              : isDark
-              ? 'text-slate-400 hover:text-white'
-              : 'text-slate-600 hover:text-slate-900'
-          }`}
-        >
-          <UserIcon className="w-3.5 h-3.5" />
-          <span>Por Empresário / Sócio</span>
-        </button>
+          <button
+            type="button"
+            onClick={() => handleModeSwitch('empresario')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
+              searchMode === 'empresario'
+                ? 'bg-emerald-600 text-white shadow-sm'
+                : isDark
+                ? 'text-slate-400 hover:text-white'
+                : 'text-slate-700 font-semibold hover:text-slate-950'
+            }`}
+          >
+            <UserIcon className="w-3.5 h-3.5" />
+            <span>Por Empresário / Sócio</span>
+          </button>
+        </div>
+
+        {/* API Provider Selector */}
+        {onProviderChange && (
+          <div className="flex items-center gap-2">
+            <span className={`text-xs font-bold hidden md:inline ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>API:</span>
+            <div
+              className={`flex items-center p-1 rounded-xl border text-xs font-medium ${
+                isDark ? 'bg-slate-900/60 border-slate-800' : 'bg-slate-100 border-slate-200'
+              }`}
+            >
+              <button
+                type="button"
+                onClick={() => onProviderChange('auto')}
+                title="Automático: consulta inteligente com contingência em cascata (BrasilAPI + CNPJ.ws)"
+                className={`px-2.5 py-1 rounded-lg transition-all font-semibold ${
+                  apiProvider === 'auto'
+                    ? 'bg-emerald-600 text-white shadow-xs'
+                    : isDark
+                    ? 'text-slate-400 hover:text-white'
+                    : 'text-slate-700 hover:text-slate-950 font-semibold'
+                }`}
+              >
+                Auto (Recomendado)
+              </button>
+
+              <button
+                type="button"
+                onClick={() => onProviderChange('brasilapi')}
+                title="BrasilAPI: consulta completa da Receita Federal sem limite restrito por minuto"
+                className={`px-2.5 py-1 rounded-lg transition-all font-semibold ${
+                  apiProvider === 'brasilapi'
+                    ? 'bg-emerald-600 text-white shadow-xs'
+                    : isDark
+                    ? 'text-slate-400 hover:text-white'
+                    : 'text-slate-700 hover:text-slate-950 font-semibold'
+                }`}
+              >
+                BrasilAPI
+              </button>
+
+              <button
+                type="button"
+                onClick={() => onProviderChange('cnpjws')}
+                title="CNPJ.ws: dados da Receita Federal com suporte a Inscrição Estadual"
+                className={`px-2.5 py-1 rounded-lg transition-all font-semibold ${
+                  apiProvider === 'cnpjws'
+                    ? 'bg-emerald-600 text-white shadow-xs'
+                    : isDark
+                    ? 'text-slate-400 hover:text-white'
+                    : 'text-slate-700 hover:text-slate-950 font-semibold'
+                }`}
+              >
+                CNPJ.ws
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Main Search Input Form */}
@@ -441,9 +508,16 @@ export function CnpjSearchForm({
             )}
           </div>
 
-          <span className="text-slate-400 dark:text-slate-500 font-mono text-[11px] hidden sm:inline">
-            Receita Federal do Brasil
-          </span>
+          <div className="flex items-center gap-2 text-slate-400 dark:text-slate-500 font-mono text-[11px] hidden sm:flex">
+            <span>Fontes:</span>
+            <span className={apiProvider === 'brasilapi' ? 'text-emerald-600 font-semibold' : ''}>
+              BrasilAPI
+            </span>
+            <span>·</span>
+            <span className={apiProvider === 'cnpjws' ? 'text-emerald-600 font-semibold' : ''}>
+              CNPJ.ws
+            </span>
+          </div>
         </div>
       </form>
 
@@ -456,7 +530,7 @@ export function CnpjSearchForm({
             type="button"
             onClick={() => {
               setValue(sample.cnpj);
-              onSearch(cleanDigits(sample.cnpj));
+              onSearch(cleanDigits(sample.cnpj), apiProvider);
             }}
             disabled={isLoading || isResolvingName}
             className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md border transition-colors disabled:opacity-50 ${

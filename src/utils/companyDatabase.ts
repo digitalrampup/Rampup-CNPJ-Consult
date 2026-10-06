@@ -1,10 +1,11 @@
-import { cleanDigits } from './formatters';
+import { cleanDigits } from './formatters.ts';
 
 export interface CompanySearchRecord {
   cnpj: string;
   razaoSocial: string;
   nomeFantasia: string;
   empresarios: string[]; // Nome do empresário / sócios principais / fundadores
+  aliases?: string[]; // Sinônimos, marcas populares, nomes comerciais ou variações
   uf: string;
   municipio: string;
   segmento: string;
@@ -404,6 +405,7 @@ export const COMPANY_CATALOG: CompanySearchRecord[] = [
     razaoSocial: 'VALE S.A.',
     nomeFantasia: 'VALE',
     empresarios: ['Gustavo Pimenta', 'Eduardo Bartolomeo', 'Murilo Ferreira'],
+    aliases: ['Companhia Vale do Rio Doce', 'CVRD', 'Vale do Rio Doce', 'Mineradora Vale'],
     uf: 'RJ',
     municipio: 'Rio de Janeiro',
     segmento: 'Mineração e Metalurgia',
@@ -740,9 +742,120 @@ export const COMPANY_CATALOG: CompanySearchRecord[] = [
     razaoSocial: 'SHPS TECNOLOGIA E SERVICOS LTDA. (SHOPEE)',
     nomeFantasia: 'SHOPEE BRASIL',
     empresarios: ['Felipe Piringer', 'Forrest Li'],
+    aliases: ['Shopee', 'Shopee Brasil', 'Sea Group'],
     uf: 'SP',
     municipio: 'São Paulo',
     segmento: 'Marketplace e E-commerce',
+  },
+  {
+    cnpj: '14380200000121',
+    razaoSocial: 'IFOOD.COM AGENCIA DE RESTAURANTES ONLINE S.A.',
+    nomeFantasia: 'IFOOD',
+    empresarios: ['Fabricio Bloisi', 'Diego Barreto', 'Arnaldo Rocha'],
+    aliases: ['iFood', 'iFood Brasil', 'Ifood Restaurantes', 'Movile', 'Entrega iFood'],
+    uf: 'SP',
+    municipio: 'Osasco',
+    segmento: 'Delivery de Refeições e Tecnologia',
+  },
+  {
+    cnpj: '17895646000187',
+    razaoSocial: 'UBER DO BRASIL TECNOLOGIA LTDA.',
+    nomeFantasia: 'UBER',
+    empresarios: ['Dara Khosrowshahi', 'Silvia Penna'],
+    aliases: ['Uber', 'Uber Brasil', 'Uber Tecnologia', 'Uber Viagens'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Mobilidade Urbana e Tecnologia',
+  },
+  {
+    cnpj: '18033552000161',
+    razaoSocial: '99 TECNOLOGIA LTDA.',
+    nomeFantasia: '99 / 99APP',
+    empresarios: ['Paulo Veras', 'Renato Freitas', 'Ariel Lambrecht'],
+    aliases: ['99', '99 App', '99 Táxi', '99 Pop', 'DiDi Chuxing'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Mobilidade Urbana e Tecnologia',
+  },
+  {
+    cnpj: '00623904000173',
+    razaoSocial: 'APPLE COMPUTER BRASIL LTDA',
+    nomeFantasia: 'APPLE BRASIL',
+    empresarios: ['Tim Cook', 'Steve Jobs'],
+    aliases: ['Apple', 'Apple Brasil', 'Apple Inc', 'iPhone', 'iPad', 'MacBook'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Eletrônicos e Tecnologia',
+  },
+  {
+    cnpj: '60316817000103',
+    razaoSocial: 'MICROSOFT INFORMATICA LTDA',
+    nomeFantasia: 'MICROSOFT BRASIL',
+    empresarios: ['Satya Nadella', 'Bill Gates'],
+    aliases: ['Microsoft', 'Microsoft Brasil', 'Windows', 'Xbox', 'Azure Brasil'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Software, Nuvem e Computação',
+  },
+  {
+    cnpj: '42591651000143',
+    razaoSocial: 'ARCOS DOURADOS COMERCIO DE ALIMENTOS SA (MCDONALD S)',
+    nomeFantasia: 'MCDONALDS / MC DONALDS / MEQUI',
+    empresarios: ['Woods Staton', 'Marcelo Rabach', 'Paulo Camargo'],
+    aliases: ['McDonalds', 'Mc Donalds', 'Méqui', 'Arcos Dorados', 'Arcos Dourados'],
+    uf: 'SP',
+    municipio: 'Barueri',
+    segmento: 'Restaurantes e Fast Food',
+  },
+  {
+    cnpj: '13574594000196',
+    razaoSocial: 'ZAMP S.A. (BURGER KING E POPEYES)',
+    nomeFantasia: 'BURGER KING / POPEYES',
+    empresarios: ['Iuri Miranda', 'Ariel Grunkraut'],
+    aliases: ['Burger King', 'Burger King Brasil', 'BK Brasil', 'Popeyes Brasil', 'Zamp'],
+    uf: 'SP',
+    municipio: 'Barueri',
+    segmento: 'Restaurantes e Fast Food',
+  },
+  {
+    cnpj: '01438784000105',
+    razaoSocial: 'BRICOLAGEM BRASIL LTDA (LEROY MERLIN)',
+    nomeFantasia: 'LEROY MERLIN',
+    empresarios: ['Ignacio Sanchez', 'François Mulliez'],
+    aliases: ['Leroy Merlin', 'Leroy Merlin Brasil', 'Grupo Adeo', 'Home Center'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Construção, Acabamento e Decoração',
+  },
+  {
+    cnpj: '43283811000150',
+    razaoSocial: 'KALUNGA S.A.',
+    nomeFantasia: 'KALUNGA',
+    empresarios: ['Paulo Garcia', 'Silvio Garcia'],
+    aliases: ['Kalunga', 'Papelaria Kalunga', 'Kalunga Comércio'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Papelaria, Material de Escritório e Informática',
+  },
+  {
+    cnpj: '16788643000181',
+    razaoSocial: 'QUINTO ANDAR SERVICOS IMOBILIARIOS LTDA.',
+    nomeFantasia: 'QUINTOANDAR',
+    empresarios: ['Gabriel Braga', 'André Penha'],
+    aliases: ['Quinto Andar', 'QuintoAndar Imóveis', 'Aluguel QuintoAndar'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Imobiliário e Proptech',
+  },
+  {
+    cnpj: '35985834000105',
+    razaoSocial: 'SHEIN BRASIL TECNOLOGIA DA INFORMACAO LTDA.',
+    nomeFantasia: 'SHEIN BRASIL',
+    empresarios: ['Chris Xu', 'Marcelo Claure'],
+    aliases: ['Shein', 'Shein Brasil', 'Moda Shein'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Moda e E-commerce',
   },
   {
     cnpj: '02558157000162',
@@ -863,6 +976,7 @@ export function normalizeSearchText(text: string): string {
  * - Razão Social
  * - Nome Fantasia
  * - Nome do Empresário / Sócio / Fundador
+ * - Aliases / Marcas Populares
  */
 export function searchCompanies(
   query: string,
@@ -873,59 +987,81 @@ export function searchCompanies(
 
   const cleanQueryDigits = cleanDigits(trimmed);
   const normalizedQuery = normalizeSearchText(trimmed);
+  const hasLetters = /[a-zA-Z]/.test(trimmed);
 
-  // If search query is numbers and in CNPJ mode or length >= 4
-  if (cleanQueryDigits.length >= 4 && (mode === 'cnpj' || mode === 'all' || /^\d+$/.test(cleanQueryDigits))) {
+  // If input is digits only or length >= 4 without letters, match CNPJ
+  if (!hasLetters && cleanQueryDigits.length >= 4) {
     const cnpjMatches = COMPANY_CATALOG.filter((comp) => comp.cnpj.includes(cleanQueryDigits));
     if (cnpjMatches.length > 0) {
       return cnpjMatches;
     }
   }
 
-  const queryTokens = normalizedQuery.split(/\s+/).filter((t) => t.length > 1);
+  // Filter stop words from tokens
+  const stopWords = new Set(['de', 'da', 'do', 'das', 'dos', 'em', 'no', 'na', 'nos', 'nas', 'e', 'ou', 'com', 'para', 'por', 'sa', 's/a', 'ltda', 'me', 'epp', 'cia']);
+  const queryTokens = normalizedQuery
+    .split(/\s+/)
+    .filter((t) => t.length > 1 && !stopWords.has(t));
 
-  return COMPANY_CATALOG.filter((comp) => {
+  const scoredResults: { comp: CompanySearchRecord; score: number }[] = [];
+
+  for (const comp of COMPANY_CATALOG) {
     const normRazao = normalizeSearchText(comp.razaoSocial);
     const normFantasia = normalizeSearchText(comp.nomeFantasia);
     const normEmpresarios = comp.empresarios.map(normalizeSearchText);
+    const normAliases = (comp.aliases || []).map(normalizeSearchText);
     const normSegmento = normalizeSearchText(comp.segmento);
 
-    // Mode-specific filtering
+    let score = 0;
+
+    // 1. Exact phrase matches (highest priority)
+    if (normFantasia === normalizedQuery || normRazao === normalizedQuery) {
+      score += 120;
+    } else if (normAliases.some((a) => a === normalizedQuery)) {
+      score += 110;
+    } else if (normEmpresarios.some((e) => e === normalizedQuery)) {
+      score += 100;
+    } else if (normFantasia.startsWith(normalizedQuery) || normRazao.startsWith(normalizedQuery)) {
+      score += 85;
+    } else if (normFantasia.includes(normalizedQuery) || normRazao.includes(normalizedQuery)) {
+      score += 70;
+    } else if (normAliases.some((a) => a.includes(normalizedQuery))) {
+      score += 65;
+    } else if (normEmpresarios.some((e) => e.includes(normalizedQuery))) {
+      score += 55;
+    }
+
+    // 2. Token overlap matches
+    if (queryTokens.length > 0) {
+      const allText = `${normRazao} ${normFantasia} ${normAliases.join(' ')} ${normEmpresarios.join(' ')} ${normSegmento}`;
+      const matchedTokens = queryTokens.filter((token) => allText.includes(token));
+
+      if (matchedTokens.length === queryTokens.length) {
+        score += 50;
+      } else if (matchedTokens.length > 0) {
+        score += (matchedTokens.length / queryTokens.length) * 35;
+      }
+    }
+
+    // Mode-specific boost
     if (mode === 'empresario') {
-      // Direct match on any partner/entrepreneur
-      return normEmpresarios.some(
-        (emp) =>
-          emp.includes(normalizedQuery) ||
-          (queryTokens.length > 0 && queryTokens.every((token) => emp.includes(token)))
+      const empMatches = normEmpresarios.some(
+        (e) => e.includes(normalizedQuery) || queryTokens.some((t) => e.includes(t))
       );
+      if (empMatches) score += 35;
+    } else if (mode === 'razao') {
+      const nameMatches = normRazao.includes(normalizedQuery) || normFantasia.includes(normalizedQuery);
+      if (nameMatches) score += 35;
     }
 
-    if (mode === 'razao') {
-      // Direct match on company legal name or trade name
-      return (
-        normRazao.includes(normalizedQuery) ||
-        normFantasia.includes(normalizedQuery) ||
-        (queryTokens.length > 0 &&
-          queryTokens.every((token) => normRazao.includes(token) || normFantasia.includes(token)))
-      );
+    if (score > 15) {
+      scoredResults.push({ comp, score });
     }
+  }
 
-    // Default 'all' mode: matches any field
-    if (normRazao.includes(normalizedQuery) || normFantasia.includes(normalizedQuery)) {
-      return true;
-    }
-
-    const matchesEmpresario = normEmpresarios.some(
-      (emp) =>
-        emp.includes(normalizedQuery) ||
-        (queryTokens.length > 0 && queryTokens.every((token) => emp.includes(token)))
-    );
-    if (matchesEmpresario) return true;
-
-    // Check cross-token match across full company profile
-    const fullText = `${normRazao} ${normFantasia} ${normEmpresarios.join(' ')} ${normSegmento}`;
-    return queryTokens.length > 0 && queryTokens.every((token) => fullText.includes(token));
-  });
+  // Sort descending by score
+  scoredResults.sort((a, b) => b.score - a.score);
+  return scoredResults.map((r) => r.comp);
 }
 
 /**

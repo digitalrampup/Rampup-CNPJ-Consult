@@ -24,6 +24,17 @@ export default defineConfig(() => {
           rewrite: (path) => path.replace(/^\/api\/cnpj-proxy/, ''),
           secure: false,
         },
+        '/api/brasilapi-proxy': {
+          target: 'https://brasilapi.com.br/api/cnpj/v1',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/brasilapi-proxy/, ''),
+          secure: false,
+          headers: {
+            'User-Agent':
+              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+            Accept: 'application/json',
+          },
+        },
       },
     },
   };

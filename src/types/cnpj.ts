@@ -70,13 +70,14 @@ export interface CnpjSocio {
 }
 
 export interface CnpjSimples {
-  mei?: string;
-  simples?: string;
+  mei?: string | boolean | null;
+  simples?: string | boolean | null;
   data_opcao_mei?: string | null;
   data_exclusao_mei?: string | null;
   data_opcao_simples?: string | null;
   data_exclusao_simples?: string | null;
   atualizado_em?: string | null;
+  regime_tributario?: Array<{ ano: number; forma_de_tributacao: string; quantidade_de_escrituracoes?: number }>;
   [key: string]: any;
 }
 
