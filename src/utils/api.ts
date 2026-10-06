@@ -417,12 +417,7 @@ export async function fetchCnpj(
     const brasilApiData = await fetchFromBrasilApi(cnpj);
     return brasilApiData;
   } catch (brasilError: any) {
-    // If BrasilAPI returned 404, propagate not found directly
-    if (brasilError.status === 404) {
-      throw brasilError;
-    }
-
-    // Try fallback to CNPJ.ws
+    // Try seamless fallback to CNPJ.ws for ANY error on BrasilAPI (including 404, 500, 429, timeout)
     try {
       const cnpjWsData = await fetchFromCnpjWs(cnpj);
       return cnpjWsData;

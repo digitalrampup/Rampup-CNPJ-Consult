@@ -53,7 +53,7 @@ export function RawJsonViewer({ data, cnpj, theme = 'dark' }: RawJsonViewerProps
           </div>
           <div>
             <h3 className={`text-sm font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>JSON Bruto da API</h3>
-            <div className={`flex items-center gap-2 text-xs font-mono ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+            <div className={`flex items-center gap-2 text-xs font-mono ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
               <span>{lineCount} linhas</span>
               <span>·</span>
               <span>{kbSize} KB</span>
@@ -70,7 +70,7 @@ export function RawJsonViewer({ data, cnpj, theme = 'dark' }: RawJsonViewerProps
                 ? isDark ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40' : 'bg-emerald-100 text-emerald-800 border-emerald-300'
                 : isDark
                 ? 'bg-slate-800 text-slate-200 border-slate-700 hover:bg-slate-700'
-                : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100'
+                : 'bg-white text-slate-800 font-semibold border-slate-300 hover:bg-slate-100 shadow-xs'
             }`}
           >
             {copied ? (

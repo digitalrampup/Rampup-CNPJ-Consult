@@ -19,9 +19,9 @@ import { cleanDigits } from './utils/formatters';
 import { searchCompanies, queryCompanySearchApi } from './utils/companyDatabase';
 
 export default function App() {
-  // Always open in the light version of the application
+  // Always open in the light version of the application with automatic multi-source API mode
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [apiProvider, setApiProvider] = useState<ApiProvider>('brasilapi');
+  const [apiProvider, setApiProvider] = useState<ApiProvider>('auto');
 
   const [activeTab, setActiveTab] = useState<'summary' | 'dynamic' | 'json'>('summary');
   const [currentCnpj, setCurrentCnpj] = useState<string>('');
@@ -80,10 +80,12 @@ export default function App() {
     return () => clearInterval(interval);
   }, [rateLimitTimer]);
 
-  const handleSearch = async (targetQuery: string, providerOverride?: ApiProvider) => {
+  const handleSearch = async (targetQuery: string, _providerOverride?: ApiProvider) => {
     const rawClean = cleanDigits(targetQuery);
     let cnpjToFetch = rawClean;
-    const activeProvider = providerOverride || apiProvider;
+    // Sempre que for consultar as APIs deixe no modo automático
+    const activeProvider: ApiProvider = 'auto';
+    setApiProvider('auto');
 
     // If query is not a 14-digit CNPJ, attempt resolution
     if (rawClean.length !== 14) {
@@ -199,10 +201,10 @@ export default function App() {
         {/* Search Header Hero */}
         <section className="space-y-4">
           <div className="space-y-1">
-            <h2 className={`text-2xl sm:text-3xl font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+            <h2 className={`text-2xl sm:text-3xl font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-slate-950'}`}>
               Consulta de Dados Cadastrais
             </h2>
-            <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+            <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-900 font-medium'}`}>
               Busque por CNPJ, Razão Social ou Nome do Empresário/Sócio na base oficial da Receita Federal.
             </p>
           </div>
@@ -219,7 +221,7 @@ export default function App() {
 
           <SearchHistory
             items={history}
-            onSelect={(cnpj) => handleSearch(cnpj, apiProvider)}
+            onSelect={(cnpj) => handleSearch(cnpj, 'auto')}
             onClear={handleClearHistory}
             currentCnpj={currentCnpj}
             theme={theme}
@@ -230,7 +232,7 @@ export default function App() {
         {error && (
           <ErrorAlert
             error={error}
-            onRetry={() => handleSearch(currentCnpj, apiProvider)}
+            onRetry={() => handleSearch(currentCnpj, 'auto')}
             onDismiss={() => setError(null)}
             rateLimitTimer={rateLimitTimer}
             theme={theme}
@@ -279,7 +281,7 @@ export default function App() {
       {/* Footer */}
       <footer
         className={`border-t py-6 mt-16 text-center text-xs transition-colors ${
-          isDark ? 'border-slate-800/80 bg-slate-950/60 text-slate-400' : 'border-slate-200 bg-white text-slate-600'
+          isDark ? 'border-slate-800/80 bg-slate-950/60 text-slate-400' : 'border-slate-200 bg-white text-slate-900 font-semibold'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
@@ -293,13 +295,13 @@ export default function App() {
                   'https://rampupbusiness.com.br/wp-content/uploads/2024/09/logo-rumpup.png';
               }}
             />
-            <p>
+            <p className={isDark ? 'text-slate-400' : 'text-slate-900 font-medium'}>
               Rampup CNPJ Consult · Dados oficiais da Receita Federal do Brasil via{' '}
-              <span className="font-mono text-emerald-600 dark:text-emerald-500 font-semibold">BrasilAPI</span> e{' '}
-              <span className="font-mono text-emerald-600 dark:text-emerald-500 font-semibold">CNPJ.ws</span>
+              <span className="font-mono text-emerald-800 dark:text-emerald-400 font-bold">BrasilAPI</span> e{' '}
+              <span className="font-mono text-emerald-800 dark:text-emerald-400 font-bold">CNPJ.ws</span>
             </p>
           </div>
-          <div className="flex items-center gap-4 text-xs">
+          <div className={`flex items-center gap-4 text-xs ${isDark ? 'text-slate-400' : 'text-slate-900 font-semibold'}`}>
             <span>Busca por CNPJ, Razão e Sócio</span>
             <span>·</span>
             <span>Exportação em PDF</span>

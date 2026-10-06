@@ -39,7 +39,7 @@ export function EmptyState({ onSelectSample, theme = 'dark' }: EmptyStateProps) 
         <h2 className={`text-xl sm:text-2xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
           Consulte qualquer empresa brasileira por CNPJ, Razão Social ou Sócio
         </h2>
-        <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+        <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
           Busque pelo número do CNPJ, nome da empresa ou nome completo do empresário para visualizar a ficha cadastral completa com exportação em PDF e inspeção profunda de dados.
         </p>
       </div>
@@ -65,7 +65,7 @@ export function EmptyState({ onSelectSample, theme = 'dark' }: EmptyStateProps) 
             <h3 className={`text-sm font-semibold ${isDark ? 'text-slate-200' : 'text-slate-900'}`}>
               {feat.title}
             </h3>
-            <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+            <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
               {feat.description}
             </p>
           </div>

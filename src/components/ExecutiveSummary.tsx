@@ -158,61 +158,61 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
           <div className="space-y-2 flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <span className={`font-mono text-sm font-semibold tracking-wider ${isDark ? 'text-emerald-400' : 'text-emerald-700'}`}>
+              <span className={`font-mono text-sm font-semibold tracking-wider ${isDark ? 'text-emerald-400' : 'text-emerald-800 font-bold'}`}>
                 {formattedCnpj}
               </span>
               <button
                 type="button"
                 onClick={() => handleCopy(formattedCnpj, 'cnpj')}
-                className={`transition-colors p-0.5 ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'}`}
+                className={`transition-colors p-0.5 ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-950'}`}
                 title="Copiar CNPJ"
               >
                 {copiedField === 'cnpj' ? (
-                  <CheckIcon className="w-3.5 h-3.5 text-emerald-500" />
+                  <CheckIcon className="w-3.5 h-3.5 text-emerald-600" />
                 ) : (
                   <CopyIcon className="w-3.5 h-3.5" />
                 )}
               </button>
 
-              <span className="text-slate-400">·</span>
-              <span className={`text-xs font-medium ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+              <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>·</span>
+              <span className={`text-xs font-semibold ${isDark ? 'text-slate-300' : 'text-slate-900'}`}>
                 {tipoEstabelecimento}
               </span>
 
-              <span className="text-slate-400">·</span>
-              <span className={`text-xs ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                Porte: <strong className={isDark ? 'text-slate-200 font-semibold' : 'text-slate-900 font-semibold'}>{porte}</strong>
+              <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>·</span>
+              <span className={`text-xs ${isDark ? 'text-slate-300' : 'text-slate-900 font-semibold'}`}>
+                Porte: <strong className={isDark ? 'text-slate-200 font-semibold' : 'text-slate-950 font-extrabold'}>{porte}</strong>
               </span>
 
               {data._apiSource && (
                 <>
-                  <span className="text-slate-400">·</span>
-                  <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md border bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20">
+                  <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>·</span>
+                  <span className="text-[11px] font-bold px-2 py-0.5 rounded-md border bg-emerald-500/10 text-emerald-900 dark:text-emerald-300 border-emerald-500/30">
                     Fonte: {data._apiSource}
                   </span>
                 </>
               )}
             </div>
 
-            <h1 className={`text-xl sm:text-2xl font-bold tracking-tight break-words ${isDark ? 'text-white' : 'text-slate-900'}`}>
+            <h1 className={`text-xl sm:text-2xl font-bold tracking-tight break-words ${isDark ? 'text-white' : 'text-slate-950'}`}>
               {razaoSocial}
             </h1>
 
             {nomeFantasia && (
-              <p className={`text-sm font-medium ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+              <p className={`text-sm font-medium ${isDark ? 'text-slate-400' : 'text-slate-900'}`}>
                 Nome Fantasia:{' '}
-                <span className={isDark ? 'text-slate-200 font-semibold' : 'text-slate-900 font-semibold'}>
+                <span className={isDark ? 'text-slate-200 font-semibold' : 'text-slate-950 font-extrabold'}>
                   {nomeFantasia}
                 </span>
               </p>
             )}
 
-            <div className={`pt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-              <span>Natureza: <strong className={isDark ? 'text-slate-300 font-medium' : 'text-slate-700 font-medium'}>{naturezaJuridica}</strong></span>
+            <div className={`pt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs ${isDark ? 'text-slate-400' : 'text-slate-900 font-medium'}`}>
+              <span>Natureza: <strong className={isDark ? 'text-slate-300 font-medium' : 'text-slate-950 font-bold'}>{naturezaJuridica}</strong></span>
               {dataInicio && (
                 <>
-                  <span className="text-slate-400">·</span>
-                  <span>Abertura: <strong className={isDark ? 'text-slate-300 font-medium' : 'text-slate-700 font-medium'}>{formatDate(dataInicio)}</strong></span>
+                  <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>·</span>
+                  <span>Abertura: <strong className={isDark ? 'text-slate-300 font-medium' : 'text-slate-950 font-bold'}>{formatDate(dataInicio)}</strong></span>
                 </>
               )}
             </div>
@@ -220,13 +220,13 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
 
           {/* Status Badge & PDF Export Actions */}
           <div className="flex flex-col items-start lg:items-end gap-3 shrink-0">
-            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold ${statusStyle.bg}`}>
+            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-bold ${statusStyle.bg}`}>
               <span className={`w-2 h-2 rounded-full animate-pulse ${statusStyle.dot}`} />
               <span>Situação: {situacao}</span>
             </div>
 
             {dataSituacao && (
-              <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-900 font-semibold'}`}>
                 Desde {formatDate(dataSituacao)}
               </span>
             )}
@@ -281,7 +281,7 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
               href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs text-emerald-500 hover:text-emerald-400 transition-colors"
+              className="inline-flex items-center gap-1 text-xs text-emerald-700 dark:text-emerald-400 font-semibold hover:text-emerald-900 dark:hover:text-emerald-300 transition-colors"
             >
               <span>Ver no Maps</span>
               <ExternalLinkIcon className="w-3 h-3" />
@@ -290,44 +290,44 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
 
           <div className="space-y-3 text-sm">
             <div>
-              <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Logradouro e Número</span>
-              <span className={`font-medium ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>
+              <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>Logradouro e Número</span>
+              <span className={`font-semibold ${isDark ? 'text-slate-100' : 'text-slate-950 font-bold'}`}>
                 {logradouro}, {numero} {complemento}
               </span>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Bairro</span>
-                <span className={isDark ? 'text-slate-200' : 'text-slate-800'}>{bairro}</span>
+                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>Bairro</span>
+                <span className={`font-medium ${isDark ? 'text-slate-200' : 'text-slate-950 font-semibold'}`}>{bairro}</span>
               </div>
               <div>
-                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>CEP</span>
-                <span className="font-mono">{cep}</span>
+                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>CEP</span>
+                <span className={`font-mono font-medium ${isDark ? 'text-slate-200' : 'text-slate-950 font-bold'}`}>{cep}</span>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Cidade / Município</span>
-                <span className={isDark ? 'text-slate-200' : 'text-slate-800'}>{cidadeNome}</span>
+                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>Cidade / Município</span>
+                <span className={`font-medium ${isDark ? 'text-slate-200' : 'text-slate-950 font-semibold'}`}>{cidadeNome}</span>
               </div>
               <div>
-                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Estado / UF</span>
-                <span className="font-semibold">{estadoSigla}</span>
+                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>Estado / UF</span>
+                <span className={`font-bold ${isDark ? 'text-slate-200' : 'text-slate-950 font-extrabold'}`}>{estadoSigla}</span>
               </div>
             </div>
 
-            <div className={`pt-2 flex items-center justify-between text-xs border-t ${isDark ? 'border-slate-800/80 text-slate-400' : 'border-slate-100 text-slate-500'}`}>
+            <div className={`pt-2 flex items-center justify-between text-xs border-t ${isDark ? 'border-slate-800/80 text-slate-400' : 'border-slate-200 text-slate-800 font-medium'}`}>
               <span className="truncate max-w-[280px]">{fullAddress}</span>
               <button
                 type="button"
                 onClick={() => handleCopy(fullAddress, 'address')}
-                className={`p-1 transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'}`}
+                className={`p-1 transition-colors ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-950'}`}
                 title="Copiar endereço completo"
               >
                 {copiedField === 'address' ? (
-                  <CheckIcon className="w-3.5 h-3.5 text-emerald-500" />
+                  <CheckIcon className="w-3.5 h-3.5 text-emerald-600" />
                 ) : (
                   <CopyIcon className="w-3.5 h-3.5" />
                 )}
@@ -341,66 +341,66 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
           className={`rounded-xl border p-5 space-y-4 transition-colors ${
             isDark
               ? 'border-slate-800 bg-slate-900/40 text-slate-200'
-              : 'border-slate-200 bg-white text-slate-800 shadow-xs'
+              : 'border-slate-200 bg-white text-slate-900 shadow-xs'
           }`}
         >
-          <div className={`flex items-center justify-between border-b pb-3 ${isDark ? 'border-slate-800' : 'border-slate-100'}`}>
-            <div className="flex items-center gap-2 font-semibold text-sm">
-              <PhoneIcon className="w-4 h-4 text-cyan-500" />
-              <span className={isDark ? 'text-white' : 'text-slate-900'}>Contatos & Comunicação</span>
+          <div className={`flex items-center justify-between border-b pb-3 ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
+            <div className="flex items-center gap-2 font-bold text-sm">
+              <PhoneIcon className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+              <span className={isDark ? 'text-white' : 'text-slate-950'}>Contatos & Comunicação</span>
             </div>
           </div>
 
           <div className="space-y-3.5 text-sm">
             <div>
-              <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>E-mail Cadastrado</span>
+              <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>E-mail Cadastrado</span>
               {email ? (
                 <a
                   href={`mailto:${email}`}
-                  className="text-cyan-500 hover:underline font-mono text-sm inline-flex items-center gap-1.5 break-all"
+                  className="text-cyan-700 dark:text-cyan-400 hover:underline font-mono text-sm inline-flex items-center gap-1.5 break-all font-bold"
                 >
                   <MailIcon className="w-3.5 h-3.5 shrink-0" />
                   <span>{email.toLowerCase()}</span>
                 </a>
               ) : (
-                <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Não informado na Receita</span>
+                <span className={isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}>Não informado na Receita</span>
               )}
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Telefone Principal</span>
+                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>Telefone Principal</span>
                 {phone1 !== '-' ? (
                   <a
                     href={`tel:${cleanDigits(phone1)}`}
-                    className={`font-mono text-sm block hover:text-emerald-500 ${isDark ? 'text-slate-100' : 'text-slate-800'}`}
+                    className={`font-mono text-sm block hover:text-emerald-600 font-bold ${isDark ? 'text-slate-100' : 'text-slate-950'}`}
                   >
                     {phone1}
                   </a>
                 ) : (
-                  <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>-</span>
+                  <span className={isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}>-</span>
                 )}
               </div>
 
               <div>
-                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Telefone Secundário</span>
+                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>Telefone Secundário</span>
                 {phone2 !== '-' ? (
                   <a
                     href={`tel:${cleanDigits(phone2)}`}
-                    className={`font-mono text-sm block hover:text-emerald-500 ${isDark ? 'text-slate-100' : 'text-slate-800'}`}
+                    className={`font-mono text-sm block hover:text-emerald-600 font-bold ${isDark ? 'text-slate-100' : 'text-slate-950'}`}
                   >
                     {phone2}
                   </a>
                 ) : (
-                  <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>-</span>
+                  <span className={isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}>-</span>
                 )}
               </div>
             </div>
 
             {est.fax && (
               <div>
-                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Fax</span>
-                <span className="font-mono text-sm">
+                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>Fax</span>
+                <span className="font-mono text-sm font-bold text-slate-950 dark:text-white">
                   {formatPhone(est.ddd_fax || est.ddd1, est.fax)}
                 </span>
               </div>
@@ -421,7 +421,7 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
               <FileTextIcon className="w-4 h-4 text-amber-500" />
               <span className={isDark ? 'text-white' : 'text-slate-900'}>Atividades Econômicas (CNAE)</span>
             </div>
-            <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+            <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
               {cnaesSecundarios.length} secundária(s)
             </span>
           </div>
@@ -429,20 +429,20 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
           <div className="space-y-3">
             <div>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-amber-500 font-semibold tracking-wide uppercase">
+                <span className="text-xs text-amber-600 dark:text-amber-500 font-bold tracking-wide uppercase">
                   Atividade Principal
                 </span>
                 {cnaePrincipal?.id && (
-                  <span className={`font-mono text-xs font-semibold px-2 py-0.5 rounded ${isDark ? 'text-slate-300 bg-slate-800' : 'text-slate-700 bg-slate-100'}`}>
+                  <span className={`font-mono text-xs font-semibold px-2 py-0.5 rounded ${isDark ? 'text-slate-300 bg-slate-800' : 'text-slate-800 bg-slate-100 font-bold'}`}>
                     {formatCnae(cnaePrincipal.id)}
                   </span>
                 )}
               </div>
-              <p className={`mt-1 text-sm font-medium ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>
+              <p className={`mt-1 text-sm font-semibold ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>
                 {cnaePrincipal?.descricao || 'Não informada'}
               </p>
               {cnaePrincipal?.secao && (
-                <p className={`text-xs mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                <p className={`text-xs mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
                   Seção {cnaePrincipal.secao} · Divisão {cnaePrincipal.divisao || '-'}
                 </p>
               )}
@@ -450,7 +450,7 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
 
             {cnaesSecundarios.length > 0 && (
               <div className={`border-t pt-3 ${isDark ? 'border-slate-800/80' : 'border-slate-100'}`}>
-                <span className={`text-xs block mb-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                <span className={`text-xs block mb-2 font-medium ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>
                   Atividades Secundárias ({cnaesSecundarios.length})
                 </span>
                 <div className="max-h-44 overflow-y-auto space-y-2 pr-1">
@@ -461,14 +461,14 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
                         isDark ? 'bg-slate-950/40 border-slate-800/60' : 'bg-slate-50 border-slate-200'
                       }`}
                     >
-                      <div className={`flex items-center justify-between font-mono text-[11px] ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                      <div className={`flex items-center justify-between font-mono text-[11px] ${isDark ? 'text-slate-400' : 'text-slate-700 font-bold'}`}>
                         <span>{formatCnae(act.id)}</span>
                       </div>
-                      <p className={`mt-0.5 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>{act.descricao}</p>
+                      <p className={`mt-0.5 ${isDark ? 'text-slate-200' : 'text-slate-900 font-medium'}`}>{act.descricao}</p>
                     </div>
                   ))}
                   {cnaesSecundarios.length > 5 && (
-                    <p className={`text-xs text-center py-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                    <p className={`text-xs text-center py-1 ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
                       + {cnaesSecundarios.length - 5} outras atividades secundárias (veja na aba Dados Completos)
                     </p>
                   )}
@@ -491,7 +491,7 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
               <BuildingIcon className="w-4 h-4 text-emerald-500" />
               <span className={isDark ? 'text-white' : 'text-slate-900'}>Inscrições Estaduais</span>
             </div>
-            <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+            <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
               {inscricoesEstaduais.length} registrada(s)
             </span>
           </div>
@@ -523,8 +523,8 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
                         )}
                       </button>
                     </div>
-                    <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                      UF: <strong className={isDark ? 'text-slate-300' : 'text-slate-700'}>{ie.estado?.sigla || ie.estado?.nome || '-'}</strong>
+                    <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
+                      UF: <strong className={isDark ? 'text-slate-300' : 'text-slate-900 font-semibold'}>{ie.estado?.sigla || ie.estado?.nome || '-'}</strong>
                       {ie.atualizado_em && ` · Atualizado em ${formatDate(ie.atualizado_em)}`}
                     </span>
                   </div>
@@ -542,7 +542,7 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
               ))}
             </div>
           ) : (
-            <div className={`py-6 text-center text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+            <div className={`py-6 text-center text-xs ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
               Nenhuma inscrição estadual retornada ou empresa isenta de IE.
             </div>
           )}
@@ -565,32 +565,32 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
 
           <div className="space-y-4">
             <div>
-              <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Capital Social Integralizado</span>
-              <span className="text-xl font-bold font-mono text-emerald-500">
+              <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>Capital Social Integralizado</span>
+              <span className="text-xl font-bold font-mono text-emerald-700 dark:text-emerald-400">
                 {capitalSocial}
               </span>
             </div>
 
-            <div className={`grid grid-cols-2 gap-3 pt-2 border-t ${isDark ? 'border-slate-800/80' : 'border-slate-100'}`}>
+            <div className={`grid grid-cols-2 gap-3 pt-2 border-t ${isDark ? 'border-slate-800/80' : 'border-slate-200'}`}>
               <div className={`p-3 rounded-lg border ${isDark ? 'bg-slate-950/40 border-slate-800/80' : 'bg-slate-50 border-slate-200'}`}>
-                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Simples Nacional</span>
-                <span className={`text-sm font-semibold mt-1 inline-block ${isSimplesOptante ? 'text-emerald-500' : isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>Simples Nacional</span>
+                <span className={`text-sm font-semibold mt-1 inline-block ${isSimplesOptante ? 'text-emerald-700 dark:text-emerald-400 font-extrabold' : isDark ? 'text-slate-300' : 'text-slate-950 font-bold'}`}>
                   {isSimplesOptante ? 'Optante' : 'Não Optante'}
                 </span>
                 {simples?.data_opcao_simples && (
-                  <span className={`text-[11px] block mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                  <span className={`text-[11px] block mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-800 font-semibold'}`}>
                     Desde {formatDate(simples.data_opcao_simples)}
                   </span>
                 )}
               </div>
 
               <div className={`p-3 rounded-lg border ${isDark ? 'bg-slate-950/40 border-slate-800/80' : 'bg-slate-50 border-slate-200'}`}>
-                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>SIMEI (MEI)</span>
-                <span className={`text-sm font-semibold mt-1 inline-block ${isMeiOptante ? 'text-emerald-500' : isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                <span className={`text-xs block ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>SIMEI (MEI)</span>
+                <span className={`text-sm font-semibold mt-1 inline-block ${isMeiOptante ? 'text-emerald-700 dark:text-emerald-400 font-extrabold' : isDark ? 'text-slate-300' : 'text-slate-950 font-bold'}`}>
                   {isMeiOptante ? 'Optante' : 'Não Optante'}
                 </span>
                 {simples?.data_opcao_mei && (
-                  <span className={`text-[11px] block mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                  <span className={`text-[11px] block mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-800 font-semibold'}`}>
                     Desde {formatDate(simples.data_opcao_mei)}
                   </span>
                 )}
@@ -600,7 +600,7 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
             {/* Regime Tributário Lucro Real / Presumido (BrasilAPI) */}
             {Array.isArray(data.regime_tributario) && data.regime_tributario.length > 0 && (
               <div className={`p-3 rounded-lg border space-y-1.5 ${isDark ? 'bg-slate-950/40 border-slate-800/80' : 'bg-slate-50 border-slate-200'}`}>
-                <span className={`text-xs font-semibold block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                <span className={`text-xs font-bold block ${isDark ? 'text-slate-400' : 'text-slate-950'}`}>
                   Histórico de Tributação ECF (BrasilAPI)
                 </span>
                 <div className="flex flex-wrap gap-1.5 pt-0.5">
@@ -608,10 +608,10 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
                     <span
                       key={idx}
                       className={`text-[11px] font-medium px-2 py-0.5 rounded border ${
-                        isDark ? 'bg-slate-900 border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-800'
+                        isDark ? 'bg-slate-900 border-slate-700 text-slate-300' : 'bg-white border-slate-300 text-slate-950 font-semibold'
                       }`}
                     >
-                      <strong className="text-emerald-600 dark:text-emerald-400">{reg.ano}:</strong> {reg.forma_de_tributacao}
+                      <strong className="text-emerald-800 dark:text-emerald-400">{reg.ano}:</strong> {reg.forma_de_tributacao}
                     </span>
                   ))}
                 </div>
@@ -625,15 +625,15 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
           className={`rounded-xl border p-5 space-y-4 transition-colors ${
             isDark
               ? 'border-slate-800 bg-slate-900/40 text-slate-200'
-              : 'border-slate-200 bg-white text-slate-800 shadow-xs'
+              : 'border-slate-200 bg-white text-slate-900 shadow-xs'
           }`}
         >
-          <div className={`flex items-center justify-between border-b pb-3 ${isDark ? 'border-slate-800' : 'border-slate-100'}`}>
-            <div className="flex items-center gap-2 font-semibold text-sm">
-              <UsersIcon className="w-4 h-4 text-purple-500" />
-              <span className={isDark ? 'text-white' : 'text-slate-900'}>Sócios e Administradores (QSA)</span>
+          <div className={`flex items-center justify-between border-b pb-3 ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
+            <div className="flex items-center gap-2 font-bold text-sm">
+              <UsersIcon className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+              <span className={isDark ? 'text-white' : 'text-slate-950'}>Sócios e Administradores (QSA)</span>
             </div>
-            <span className={`text-xs font-mono ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+            <span className={`text-xs font-mono font-bold ${isDark ? 'text-slate-400' : 'text-slate-900'}`}>
               {socios.length} membro(s)
             </span>
           </div>
@@ -648,29 +648,29 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <span className={`text-sm font-semibold ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>
+                    <span className={`text-sm font-bold ${isDark ? 'text-slate-100' : 'text-slate-950'}`}>
                       {socio.nome}
                     </span>
-                    <span className={`text-xs font-mono shrink-0 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                    <span className={`text-xs font-mono shrink-0 font-bold ${isDark ? 'text-slate-400' : 'text-slate-800'}`}>
                       {socio.tipo || 'Pessoa'}
                     </span>
                   </div>
 
-                  <div className={`flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                  <div className={`flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs ${isDark ? 'text-slate-400' : 'text-slate-800 font-semibold'}`}>
                     {socio.qualificacao_socio?.descricao && (
-                      <span className="text-purple-500 font-medium">
+                      <span className="text-purple-700 dark:text-purple-400 font-bold">
                         {socio.qualificacao_socio.descricao}
                       </span>
                     )}
                     {socio.data_entrada && (
                       <>
-                        <span className="text-slate-400">·</span>
-                        <span>Entrada: {formatDate(socio.data_entrada)}</span>
+                        <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>·</span>
+                        <span>Entrada: <strong className="text-slate-950 dark:text-slate-200 font-bold">{formatDate(socio.data_entrada)}</strong></span>
                       </>
                     )}
                     {socio.faixa_etaria && socio.faixa_etaria !== 'Não se aplica' && (
                       <>
-                        <span className="text-slate-400">·</span>
+                        <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>·</span>
                         <span>{socio.faixa_etaria}</span>
                       </>
                     )}
@@ -679,7 +679,7 @@ export function ExecutiveSummary({ data, theme = 'dark' }: ExecutiveSummaryProps
               ))}
             </div>
           ) : (
-            <div className={`py-6 text-center text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+            <div className={`py-6 text-center text-xs ${isDark ? 'text-slate-400' : 'text-slate-800 font-medium'}`}>
               Nenhum sócio ou administrador registrado para este tipo societário (ou empresa individual).
             </div>
           )}

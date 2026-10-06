@@ -955,6 +955,524 @@ export const COMPANY_CATALOG: CompanySearchRecord[] = [
     municipio: 'São Paulo',
     segmento: 'Incorporação e Construção',
   },
+  // ==========================================
+  // Saneamento, Energia e Concessões Públicas
+  // ==========================================
+  {
+    cnpj: '43776517000180',
+    razaoSocial: 'COMPANHIA DE SANEAMENTO BASICO DO ESTADO DE SAO PAULO - SABESP',
+    nomeFantasia: 'SABESP',
+    empresarios: ['André Salcedo', 'Governo do Estado de São Paulo'],
+    aliases: ['SABESP SANEAMENTO', 'SABESP AGUA E ESGOTO'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Água e Saneamento',
+  },
+  {
+    cnpj: '76483817000120',
+    razaoSocial: 'COMPANHIA PARANAENSE DE ENERGIA - COPEL',
+    nomeFantasia: 'COPEL',
+    empresarios: ['Daniel Pimentel Slaviero'],
+    aliases: ['COPEL ENERGIA', 'COPEL DISTRIBUICAO'],
+    uf: 'PR',
+    municipio: 'Curitiba',
+    segmento: 'Energia Elétrica',
+  },
+  {
+    cnpj: '17155730000164',
+    razaoSocial: 'COMPANHIA ENERGETICA DE MINAS GERAIS - CEMIG',
+    nomeFantasia: 'CEMIG',
+    empresarios: ['Reynaldo Passanezi Filho'],
+    aliases: ['CEMIG ENERGIA', 'CEMIG DISTRIBUICAO'],
+    uf: 'MG',
+    municipio: 'Belo Horizonte',
+    segmento: 'Energia Elétrica',
+  },
+  {
+    cnpj: '03220438000173',
+    razaoSocial: 'EQUATORIAL ENERGIA S.A.',
+    nomeFantasia: 'EQUATORIAL ENERGIA',
+    empresarios: ['Augusto Miranda da Paz Junior'],
+    aliases: ['EQUATORIAL', 'GRUPO EQUATORIAL'],
+    uf: 'DF',
+    municipio: 'Brasília',
+    segmento: 'Energia e Saneamento',
+  },
+  {
+    cnpj: '02429144000193',
+    razaoSocial: 'CPFL ENERGIA S.A.',
+    nomeFantasia: 'CPFL ENERGIA',
+    empresarios: ['Gustavo Estrella'],
+    aliases: ['CPFL', 'CPFL PAULISTA'],
+    uf: 'SP',
+    municipio: 'Campinas',
+    segmento: 'Energia Elétrica',
+  },
+  {
+    cnpj: '01083200000118',
+    razaoSocial: 'NEOENERGIA S.A.',
+    nomeFantasia: 'NEOENERGIA',
+    empresarios: ['Eduardo Capelastegui Saiz'],
+    aliases: ['NEOENERGIA ELEKTRO', 'NEOENERGIA COELBA'],
+    uf: 'RJ',
+    municipio: 'Rio de Janeiro',
+    segmento: 'Energia Elétrica',
+  },
+  {
+    cnpj: '76484013000145',
+    razaoSocial: 'COMPANHIA DE SANEAMENTO DO PARANA - SANEPAR',
+    nomeFantasia: 'SANEPAR',
+    empresarios: ['Claudio Stabile'],
+    aliases: ['SANEPAR SANEAMENTO'],
+    uf: 'PR',
+    municipio: 'Curitiba',
+    segmento: 'Água e Saneamento',
+  },
+  {
+    cnpj: '17281106000103',
+    razaoSocial: 'COMPANHIA DE SANEAMENTO DE MINAS GERAIS - COPASA',
+    nomeFantasia: 'COPASA',
+    empresarios: ['Guilherme Augusto Duarte de Faria'],
+    aliases: ['COPASA SANEAMENTO'],
+    uf: 'MG',
+    municipio: 'Belo Horizonte',
+    segmento: 'Água e Saneamento',
+  },
+  {
+    cnpj: '02474103000119',
+    razaoSocial: 'ENGIE BRASIL ENERGIA S.A.',
+    nomeFantasia: 'ENGIE BRASIL',
+    empresarios: ['Eduardo Takamori', 'Mauricio Bähr'],
+    aliases: ['ENGIE', 'TRACTEBEL'],
+    uf: 'SC',
+    municipio: 'Florianópolis',
+    segmento: 'Geração de Energia',
+  },
+  {
+    cnpj: '07523555000167',
+    razaoSocial: 'ENEL BRASIL S.A.',
+    nomeFantasia: 'ENEL BRASIL',
+    empresarios: ['Antonio Scala'],
+    aliases: ['ENEL', 'ENEL SAO PAULO', 'ENEL RIO'],
+    uf: 'RJ',
+    municipio: 'Niterói',
+    segmento: 'Energia Elétrica',
+  },
+  // ==========================================
+  // Alimentos, Bebidas e Redes de Franquias
+  // ==========================================
+  {
+    cnpj: '05897077000168',
+    razaoSocial: 'CACAU SHOW COMERCIO DE ALIMENTOS LTDA.',
+    nomeFantasia: 'CACAU SHOW',
+    empresarios: ['Alexandre Tadeu da Costa'],
+    aliases: ['CACAU SHOW CHOCOLATES', 'ALEXANDRE COSTA'],
+    uf: 'SP',
+    municipio: 'Itapevi',
+    segmento: 'Chocolates e Confeitaria',
+  },
+  {
+    cnpj: '61119509000189',
+    razaoSocial: 'CRM DISTRIBUIDORA DE ALIMENTOS S.A.',
+    nomeFantasia: 'KOPENHAGEN / BRASIL CACAU',
+    empresarios: ['Renata Moraes Vichi', 'Celso Ricardo de Moraes'],
+    aliases: ['KOPENHAGEN', 'BRASIL CACAU', 'GRUPO CRM'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Chocolates Finos',
+  },
+  {
+    cnpj: '60409075000152',
+    razaoSocial: 'PANDURATA ALIMENTOS LTDA. - BAUDUCCO',
+    nomeFantasia: 'BAUDUCCO',
+    empresarios: ['Carlo Bauducco', 'Massimo Bauducco'],
+    aliases: ['BAUDUCCO PANETTONES', 'PANDURATA'],
+    uf: 'SP',
+    municipio: 'Guarulhos',
+    segmento: 'Panificação e Biscoitos',
+  },
+  {
+    cnpj: '60108776000170',
+    razaoSocial: 'ALSAR RESTAURANTES LTDA. (HABIB\'S)',
+    nomeFantasia: 'HABIB\'S / RAGAZZO',
+    empresarios: ['Antônio Alberto Saraiva'],
+    aliases: ['HABIBS', 'HABIB S', 'RAGAZZO'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Rede de Restaurantes Fast Food',
+  },
+  {
+    cnpj: '12383663000150',
+    razaoSocial: 'MADERO INDUSTRIA E COMERCIO S.A.',
+    nomeFantasia: 'MADERO / JERONIMO',
+    empresarios: ['Luiz Renato Durski Junior (Junior Durski)'],
+    aliases: ['MADERO', 'JERONIMO BURGER', 'GRUPO MADERO'],
+    uf: 'PR',
+    municipio: 'Curitiba',
+    segmento: 'Restaurantes e Hamburguerias',
+  },
+  {
+    cnpj: '05513754000135',
+    razaoSocial: 'COCO BAMBU RESTAURANTES LTDA.',
+    nomeFantasia: 'COCO BAMBU',
+    empresarios: ['Afrânio Barreira', 'Daniela Barreira'],
+    aliases: ['COCO BAMBU FRUTOS DO MAR'],
+    uf: 'CE',
+    municipio: 'Fortaleza',
+    segmento: 'Restaurantes e Gastronomia',
+  },
+  {
+    cnpj: '02040644000135',
+    razaoSocial: 'BLOOMIN\' BRANDS BRASIL RESTAURANTES LTDA.',
+    nomeFantasia: 'OUTBACK STEAKHOUSE / ABBRACCIO',
+    empresarios: ['Pierre Berenstein', 'Mauro Guardabassi'],
+    aliases: ['OUTBACK', 'OUTBACK BRASIL', 'ABBRACCIO'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Restaurantes Casual Dining',
+  },
+  {
+    cnpj: '04288742000190',
+    razaoSocial: 'DINIZ FRANCHISING LTDA. (OTICAS DINIZ)',
+    nomeFantasia: 'OTICAS DINIZ',
+    empresarios: ['Arione Diniz'],
+    aliases: ['OTICA DINIZ', 'OTICAS DINIZ BRASIL'],
+    uf: 'SP',
+    municipio: 'São José do Rio Preto',
+    segmento: 'Óticas e Varejo de Óculos',
+  },
+  {
+    cnpj: '04899316000108',
+    razaoSocial: 'ULTRAFARMA SAUDE LTDA.',
+    nomeFantasia: 'ULTRAFARMA',
+    empresarios: ['Sidney Oliveira'],
+    aliases: ['ULTRAFARMA SIDNEY OLIVEIRA'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Farmácias e Medicamentos',
+  },
+  {
+    cnpj: '06626253000151',
+    razaoSocial: 'EMPREENDIMENTOS PAGUE MENOS S/A',
+    nomeFantasia: 'FARMACIAS PAGUE MENOS / EXTRAFARMA',
+    empresarios: ['Deusmar Queirós', 'Mário Queirós'],
+    aliases: ['PAGUE MENOS', 'FARMACIA PAGUE MENOS', 'EXTRAFARMA'],
+    uf: 'CE',
+    municipio: 'Fortaleza',
+    segmento: 'Farmácias e Drogarias',
+  },
+  {
+    cnpj: '92693025000103',
+    razaoSocial: 'DIMED S/A DISTRIBUIDORA DE MEDICAMENTOS - PANVEL',
+    nomeFantasia: 'PANVEL FARMACIAS',
+    empresarios: ['Julio Ricardo Mottin Neto'],
+    aliases: ['PANVEL', 'GRUPO DIMED'],
+    uf: 'RS',
+    municipio: 'Eldorado do Sul',
+    segmento: 'Farmácias e Cosméticos',
+  },
+  {
+    cnpj: '00461479000163',
+    razaoSocial: 'PREVENT SENIOR PRIVATE OPERADORA DE SAUDE LTDA.',
+    nomeFantasia: 'PREVENT SENIOR',
+    empresarios: ['Fernando Parrillo', 'Eduardo Parrillo'],
+    aliases: ['PREVENT SENIOR PLANO DE SAUDE'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Operadora de Saúde e Hospitais',
+  },
+  {
+    cnpj: '44408383000161',
+    razaoSocial: 'UNIMED DO BRASIL CONFEDERACAO NACIONAL DAS COOPERATIVAS MEDICAS',
+    nomeFantasia: 'UNIMED DO BRASIL',
+    empresarios: ['Omar Abujamra Junior'],
+    aliases: ['UNIMED', 'SISTEMA UNIMED', 'CENTRAL NACIONAL UNIMED'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Planos de Saúde e Cooperativas Médicas',
+  },
+  // ==========================================
+  // Tecnologia, Telecom e Serviços Digitais
+  // ==========================================
+  {
+    cnpj: '71208516000174',
+    razaoSocial: 'ALGAR TELECOM S.A.',
+    nomeFantasia: 'ALGAR TELECOM',
+    empresarios: ['Luiz Alexandre Garcia', 'Jean Carlos Borges'],
+    aliases: ['ALGAR', 'CTBC'],
+    uf: 'MG',
+    municipio: 'Uberlândia',
+    segmento: 'Telecomunicações e TI',
+  },
+  {
+    cnpj: '00781082000183',
+    razaoSocial: 'CI&T SOFTWARE S.A.',
+    nomeFantasia: 'CI&T',
+    empresarios: ['Cesar Gon', 'Bruno Guicardi', 'Fernando Martins'],
+    aliases: ['CIT', 'CI E T'],
+    uf: 'SP',
+    municipio: 'Campinas',
+    segmento: 'Transformação Digital e Software',
+  },
+  {
+    cnpj: '02351877000152',
+    razaoSocial: 'LWSA S.A. (ANTIGA LOCAWEB)',
+    nomeFantasia: 'LOCAWEB / LWSA',
+    empresarios: ['Gilberto Mautner', 'Claudio Gora', 'Fernando Cirne'],
+    aliases: ['LOCAWEB', 'LWSA'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Hospedagem e Soluções Digitais',
+  },
+  {
+    cnpj: '27604288000120',
+    razaoSocial: 'BUSER BRASIL TECNOLOGIA LTDA.',
+    nomeFantasia: 'BUSER',
+    empresarios: ['Marcelo Abritta', 'Marcelo Vasconcellos'],
+    aliases: ['BUSER ONIBUS', 'BUSER VIAGENS'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Transporte e Plataforma Digital',
+  },
+  {
+    cnpj: '03563689000123',
+    razaoSocial: 'DECOLAR.COM LTDA.',
+    nomeFantasia: 'DECOLAR',
+    empresarios: ['Alex Todres'],
+    aliases: ['DECOLAR COM', 'DECOLAR VIAGENS'],
+    uf: 'SP',
+    municipio: 'Barueri',
+    segmento: 'Agência de Turismo Online',
+  },
+  {
+    cnpj: '10760260000119',
+    razaoSocial: 'CVC BRASIL OPERADORA E AGENCIA DE VIAGENS S.A.',
+    nomeFantasia: 'CVC',
+    empresarios: ['Guilherme Paulus', 'Fabio Godinho'],
+    aliases: ['CVC VIAGENS', 'GRUPO CVC'],
+    uf: 'SP',
+    municipio: 'Santo André',
+    segmento: 'Turismo e Agência de Viagens',
+  },
+  // ==========================================
+  // Indústria, Construção e Materiais
+  // ==========================================
+  {
+    cnpj: '90049792000181',
+    razaoSocial: 'TRAMONTINA S/A CUTELARIA',
+    nomeFantasia: 'TRAMONTINA',
+    empresarios: ['Clovis Tramontina', 'Eduardo Sampaio'],
+    aliases: ['TRAMONTINA PANELAS', 'GRUPO TRAMONTINA'],
+    uf: 'RS',
+    municipio: 'Carlos Barbosa',
+    segmento: 'Utensílios Domésticos e Ferramentas',
+  },
+  {
+    cnpj: '84684455000173',
+    razaoSocial: 'TIGRE MATERIAIS E SOLUCOES PARA CONSTRUCAO S.A.',
+    nomeFantasia: 'TIGRE',
+    empresarios: ['Otto Engelmann', 'Felipe Hansen'],
+    aliases: ['TIGRE TUBOS E CONEXOES'],
+    uf: 'SC',
+    municipio: 'Joinville',
+    segmento: 'Tubos, Conexões e Construção',
+  },
+  {
+    cnpj: '97837181000147',
+    razaoSocial: 'DEXCO S.A. (ANTIGA DURATEX / DECA)',
+    nomeFantasia: 'DEXCO / DURATEX / DECA',
+    empresarios: ['Antonio Joaquim de Oliveira'],
+    aliases: ['DURATEX', 'DECA', 'CEUSA', 'PORTINARI'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Painéis de Madeira e Louças Sanitárias',
+  },
+  {
+    cnpj: '01438784000105',
+    razaoSocial: 'LEROY MERLIN COMPANHIA BRASILEIRA DE BRICOLAGEM',
+    nomeFantasia: 'LEROY MERLIN',
+    empresarios: ['Ignacio Sanchez'],
+    aliases: ['LEROY MERLIN BRASIL'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Home Center e Materiais de Construção',
+  },
+  {
+    cnpj: '16614075000100',
+    razaoSocial: 'DIRECIONAL ENGENHARIA S.A.',
+    nomeFantasia: 'DIRECIONAL ENGENHARIA',
+    empresarios: ['Ricardo Valadares Gontijo', 'Ricardo Ribeiro Valadares Gontijo'],
+    aliases: ['DIRECIONAL', 'RIVA INCORPORADORA'],
+    uf: 'MG',
+    municipio: 'Belo Horizonte',
+    segmento: 'Construção Civil e Incorporação',
+  },
+  {
+    cnpj: '08790698000127',
+    razaoSocial: 'CURY CONSTRUTORA E INCORPORADORA S.A.',
+    nomeFantasia: 'CURY CONSTRUTORA',
+    empresarios: ['Fabio Cury', 'Ronaldo Cury'],
+    aliases: ['CURY'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Construção Civil e Imóveis',
+  },
+  {
+    cnpj: '07816890000153',
+    razaoSocial: 'MULTIPLAN EMPREENDIMENTOS IMOBILIARIOS S.A.',
+    nomeFantasia: 'MULTIPLAN / SHOPPINGS MULTIPLAN',
+    empresarios: ['José Isaac Peres', 'Eduardo Kaminitz Peres'],
+    aliases: ['MULTIPLAN', 'BARRA SHOPPING', 'MORUMBI SHOPPING'],
+    uf: 'RJ',
+    municipio: 'Rio de Janeiro',
+    segmento: 'Shopping Centers e Imóveis Comerciais',
+  },
+  {
+    cnpj: '51218147000193',
+    razaoSocial: 'IGUATEMI S.A.',
+    nomeFantasia: 'IGUATEMI SHOPPING',
+    empresarios: ['Carlos Jereissati', 'Cristina Betts'],
+    aliases: ['IGUATEMI', 'SHOPPING IGUATEMI'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Shopping Centers',
+  },
+  // ==========================================
+  // Educação e Universidades
+  // ==========================================
+  {
+    cnpj: '02800026000140',
+    razaoSocial: 'COGNA EDUCACAO S.A. (KROTON / ANHANGUERA)',
+    nomeFantasia: 'COGNA / ANHANGUERA / PITAGORAS',
+    empresarios: ['Rodrigo Galindo', 'Roberto Valério'],
+    aliases: ['KROTON', 'COGNA', 'ANHANGUERA EDUCACIONAL'],
+    uf: 'MG',
+    municipio: 'Belo Horizonte',
+    segmento: 'Ensino Superior e Básico',
+  },
+  {
+    cnpj: '08807432000110',
+    razaoSocial: 'YDUQS PARTICIPACOES S.A. (ESTACIO / IBMEC)',
+    nomeFantasia: 'ESTACIO / IBMEC / YDUQS',
+    empresarios: ['Eduardo Parente', 'Chaim Zaher'],
+    aliases: ['ESTACIO', 'IBMEC', 'YDUQS'],
+    uf: 'RJ',
+    municipio: 'Rio de Janeiro',
+    segmento: 'Ensino Superior',
+  },
+  {
+    cnpj: '09288252000132',
+    razaoSocial: 'ANIMA HOLDING S.A.',
+    nomeFantasia: 'ANIMA EDUCACAO (SAO JUDAS / ANHEMBI MORUMBI / UNA)',
+    empresarios: ['Daniel Faccini Castanho', 'Marcelo Battistella Bueno'],
+    aliases: ['ANIMA', 'UNIVERSIDADE SAO JUDAS', 'ANHEMBI MORUMBI', 'UNA'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Ensino Superior',
+  },
+  {
+    cnpj: '33641663000144',
+    razaoSocial: 'FUNDACAO GETULIO VARGAS - FGV',
+    nomeFantasia: 'FGV',
+    empresarios: ['Carlos Ivan Simonsen Leal'],
+    aliases: ['FUNDACAO GETULIO VARGAS', 'FGV DIREITO', 'FGV EESP'],
+    uf: 'RJ',
+    municipio: 'Rio de Janeiro',
+    segmento: 'Ensino e Pesquisa Econômica',
+  },
+  {
+    cnpj: '60967751000197',
+    razaoSocial: 'INSTITUTO PRESBITERIANO MACKENZIE',
+    nomeFantasia: 'MACKENZIE',
+    empresarios: ['Milton Flávio Moura'],
+    aliases: ['UNIVERSIDADE MACKENZIE', 'COLEGIO MACKENZIE'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Ensino Superior e Colégios',
+  },
+  // ==========================================
+  // Supermercados e Redes Regionais
+  // ==========================================
+  {
+    cnpj: '04641376000136',
+    razaoSocial: 'SUPERMERCADOS BH COMERCIO DE ALIMENTOS S/A',
+    nomeFantasia: 'SUPERMERCADOS BH',
+    empresarios: ['Waldir Rocha Pena'],
+    aliases: ['SUPERMERCADO BH', 'REDE BH'],
+    uf: 'MG',
+    municipio: 'Santa Luzia',
+    segmento: 'Supermercados e Varejo de Alimentos',
+  },
+  {
+    cnpj: '76430438000100',
+    razaoSocial: 'IRMAOS MUFFATO E CIA LTDA.',
+    nomeFantasia: 'MUFFATO / MAX ATACADISTA',
+    empresarios: ['Everton Muffato', 'Ederson Muffato'],
+    aliases: ['GRUPO MUFFATO', 'SUPERMERCADOS MUFFATO', 'MAX ATACADISTA'],
+    uf: 'PR',
+    municipio: 'Cascavel',
+    segmento: 'Supermercados e Atacarejo',
+  },
+  {
+    cnpj: '83646984000142',
+    razaoSocial: 'A. ANGELONI E CIA. LTDA.',
+    nomeFantasia: 'ANGELONI SUPERMERCADOS',
+    empresarios: ['Arnaldo Angeloni'],
+    aliases: ['REDE ANGELONI', 'FARMACIAS ANGELONI'],
+    uf: 'SC',
+    municipio: 'Criciúma',
+    segmento: 'Supermercados e Farmácias',
+  },
+  {
+    cnpj: '33045642000150',
+    razaoSocial: 'SUPERMERCADOS GUANABARA S.A.',
+    nomeFantasia: 'SUPERMERCADOS GUANABARA',
+    empresarios: ['Albino Pinho'],
+    aliases: ['GUANABARA ANIVERSARIO', 'GUANABARA'],
+    uf: 'RJ',
+    municipio: 'Rio de Janeiro',
+    segmento: 'Supermercados e Varejo',
+  },
+  {
+    cnpj: '47962345000127',
+    razaoSocial: 'SAVEGNAGO SUPERMERCADOS LTDA.',
+    nomeFantasia: 'SAVEGNAGO SUPERMERCADOS',
+    empresarios: ['Chalim Savegnago', 'Antonio Savegnago'],
+    aliases: ['SAVEGNAGO', 'REDE SAVEGNAGO'],
+    uf: 'SP',
+    municipio: 'Sertãozinho',
+    segmento: 'Supermercados e Atacarejo',
+  },
+  {
+    cnpj: '93015006000113',
+    razaoSocial: 'COMPANHIA ZAFFARI COMERCIO E INDUSTRIA',
+    nomeFantasia: 'ZAFFARI / BOURBON SHOPPING',
+    empresarios: ['Claudio Zaffari'],
+    aliases: ['ZAFFARI SUPERMERCADOS', 'BOURBON'],
+    uf: 'RS',
+    municipio: 'Porto Alegre',
+    segmento: 'Supermercados e Shoppings',
+  },
+  {
+    cnpj: '01157555000129',
+    razaoSocial: 'TENDA ATACADO S.A.',
+    nomeFantasia: 'TENDA ATACADO',
+    empresarios: ['Pedro Severino', 'Carlos Severino'],
+    aliases: ['TENDA', 'TENDA ATACADISTA'],
+    uf: 'SP',
+    municipio: 'Guarulhos',
+    segmento: 'Atacarejo e Varejo',
+  },
+  {
+    cnpj: '03953535000135',
+    razaoSocial: 'ROLDAO AUTO SERVICO COMERCIO DE ALIMENTOS LTDA.',
+    nomeFantasia: 'ROLDAO ATACADISTA',
+    empresarios: ['Ricardo Roldão'],
+    aliases: ['ROLDAO', 'ROLDAO ATACADO'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Atacarejo de Alimentos',
+  },
 ];
 
 /**
@@ -968,6 +1486,13 @@ export function normalizeSearchText(text: string): string {
     .replace(/[^\w\s]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/**
+ * Checks if a word token matches any word or word prefix in target text
+ */
+function tokenMatchesWords(targetWords: string[], token: string): boolean {
+  return targetWords.some((w) => w === token || (token.length >= 4 && w.startsWith(token)));
 }
 
 /**
@@ -998,7 +1523,10 @@ export function searchCompanies(
   }
 
   // Filter stop words from tokens
-  const stopWords = new Set(['de', 'da', 'do', 'das', 'dos', 'em', 'no', 'na', 'nos', 'nas', 'e', 'ou', 'com', 'para', 'por', 'sa', 's/a', 'ltda', 'me', 'epp', 'cia']);
+  const stopWords = new Set([
+    'de', 'da', 'do', 'das', 'dos', 'em', 'no', 'na', 'nos', 'nas',
+    'e', 'ou', 'com', 'para', 'por', 'sa', 's/a', 'ltda', 'me', 'epp', 'cia'
+  ]);
   const queryTokens = normalizedQuery
     .split(/\s+/)
     .filter((t) => t.length > 1 && !stopWords.has(t));
@@ -1016,45 +1544,49 @@ export function searchCompanies(
 
     // 1. Exact phrase matches (highest priority)
     if (normFantasia === normalizedQuery || normRazao === normalizedQuery) {
-      score += 120;
+      score += 150;
     } else if (normAliases.some((a) => a === normalizedQuery)) {
-      score += 110;
+      score += 140;
     } else if (normEmpresarios.some((e) => e === normalizedQuery)) {
-      score += 100;
+      score += 130;
     } else if (normFantasia.startsWith(normalizedQuery) || normRazao.startsWith(normalizedQuery)) {
-      score += 85;
+      score += 100;
     } else if (normFantasia.includes(normalizedQuery) || normRazao.includes(normalizedQuery)) {
-      score += 70;
+      score += 85;
     } else if (normAliases.some((a) => a.includes(normalizedQuery))) {
-      score += 65;
+      score += 80;
     } else if (normEmpresarios.some((e) => e.includes(normalizedQuery))) {
-      score += 55;
+      score += 75;
     }
 
-    // 2. Token overlap matches
+    // 2. Token overlap matches using word-level boundaries
     if (queryTokens.length > 0) {
       const allText = `${normRazao} ${normFantasia} ${normAliases.join(' ')} ${normEmpresarios.join(' ')} ${normSegmento}`;
-      const matchedTokens = queryTokens.filter((token) => allText.includes(token));
+      const targetWords = allText.split(/\s+/);
+      const matchedTokens = queryTokens.filter((token) => tokenMatchesWords(targetWords, token));
 
       if (matchedTokens.length === queryTokens.length) {
-        score += 50;
-      } else if (matchedTokens.length > 0) {
-        score += (matchedTokens.length / queryTokens.length) * 35;
+        score += 70;
+      } else if (queryTokens.length > 1 && matchedTokens.length >= Math.ceil(queryTokens.length * 0.75)) {
+        score += (matchedTokens.length / queryTokens.length) * 45;
+      } else if (queryTokens.length === 1 && matchedTokens.length === 1 && queryTokens[0].length >= 3) {
+        score += 40;
       }
     }
 
     // Mode-specific boost
     if (mode === 'empresario') {
       const empMatches = normEmpresarios.some(
-        (e) => e.includes(normalizedQuery) || queryTokens.some((t) => e.includes(t))
+        (e) => e.includes(normalizedQuery) || (queryTokens.length > 0 && queryTokens.every((t) => e.includes(t)))
       );
-      if (empMatches) score += 35;
+      if (empMatches) score += 40;
     } else if (mode === 'razao') {
       const nameMatches = normRazao.includes(normalizedQuery) || normFantasia.includes(normalizedQuery);
-      if (nameMatches) score += 35;
+      if (nameMatches) score += 40;
     }
 
-    if (score > 15) {
+    // Quality threshold: must have high confidence (exact, substring, or full token match)
+    if (score >= 45) {
       scoredResults.push({ comp, score });
     }
   }
@@ -1081,11 +1613,11 @@ export async function queryCompanySearchApi(
     return localResults;
   }
 
-  // If nothing local, fetch from server API
+  // If nothing local, fetch from server API with resilient timeout
   try {
     const url = `/api/search-company?q=${encodeURIComponent(trimmed)}&mode=${encodeURIComponent(mode)}`;
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 7000);
+    const timeout = setTimeout(() => controller.abort(), 12000);
 
     const res = await fetch(url, { signal: controller.signal });
     clearTimeout(timeout);

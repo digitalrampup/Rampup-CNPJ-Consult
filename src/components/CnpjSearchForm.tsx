@@ -79,6 +79,45 @@ export function CnpjSearchForm({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Debounced API search for queries with letters or name search
+  useEffect(() => {
+    const trimmed = value.trim();
+    const hasLetters = /[a-zA-Z]/.test(trimmed);
+    const isCnpjFormatted = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/.test(trimmed);
+
+    // Skip debounced online search if it's already a full 14-digit CNPJ or too short
+    if (cleanDigits(trimmed).length === 14 || isCnpjFormatted || trimmed.length < 3) {
+      return;
+    }
+
+    const effectiveMode = searchMode === 'cnpj' ? 'all' : searchMode;
+
+    const timer = setTimeout(async () => {
+      try {
+        const online = await queryCompanySearchApi(trimmed, effectiveMode);
+        if (online.length > 0) {
+          // Merge local and online uniquely by CNPJ
+          setSearchResults((prev) => {
+            const seen = new Set(prev.map((p) => p.cnpj));
+            const merged = [...prev];
+            for (const item of online) {
+              if (!seen.has(item.cnpj)) {
+                seen.add(item.cnpj);
+                merged.push(item);
+              }
+            }
+            return merged.slice(0, 8);
+          });
+          setIsDropdownOpen(true);
+        }
+      } catch {
+        // ignore
+      }
+    }, 350);
+
+    return () => clearTimeout(timer);
+  }, [value, searchMode]);
+
   const rawDigits = cleanDigits(value);
   const isInputNumeric = /^\d+$/.test(value.replace(/[\.\-\/]/g, '')) && value.length > 0;
 
@@ -123,7 +162,7 @@ export function CnpjSearchForm({
   const handleSelectCompany = (comp: CompanySearchRecord) => {
     setValue(formatCnpj(comp.cnpj));
     setIsDropdownOpen(false);
-    onSearch(comp.cnpj, apiProvider);
+    onSearch(comp.cnpj, 'auto'); // Sempre modo automático!
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -134,7 +173,7 @@ export function CnpjSearchForm({
     // 1. Direct CNPJ Submission (14 digits)
     if (rawDigits.length === 14) {
       setIsDropdownOpen(false);
-      onSearch(rawDigits, apiProvider);
+      onSearch(rawDigits, 'auto'); // Sempre modo automático!
       return;
     }
 
@@ -218,7 +257,7 @@ export function CnpjSearchForm({
                 ? 'bg-emerald-600 text-white shadow-sm'
                 : isDark
                 ? 'text-slate-400 hover:text-white'
-                : 'text-slate-700 font-semibold hover:text-slate-950'
+                : 'text-slate-800 font-bold hover:text-black'
             }`}
           >
             <BuildingIcon className="w-3.5 h-3.5" />
@@ -233,7 +272,7 @@ export function CnpjSearchForm({
                 ? 'bg-emerald-600 text-white shadow-sm'
                 : isDark
                 ? 'text-slate-400 hover:text-white'
-                : 'text-slate-700 font-semibold hover:text-slate-950'
+                : 'text-slate-800 font-bold hover:text-black'
             }`}
           >
             <BuildingIcon className="w-3.5 h-3.5" />
@@ -248,7 +287,7 @@ export function CnpjSearchForm({
                 ? 'bg-emerald-600 text-white shadow-sm'
                 : isDark
                 ? 'text-slate-400 hover:text-white'
-                : 'text-slate-700 font-semibold hover:text-slate-950'
+                : 'text-slate-800 font-bold hover:text-black'
             }`}
           >
             <UserIcon className="w-3.5 h-3.5" />
@@ -259,7 +298,7 @@ export function CnpjSearchForm({
         {/* API Provider Selector */}
         {onProviderChange && (
           <div className="flex items-center gap-2">
-            <span className={`text-xs font-bold hidden md:inline ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>API:</span>
+            <span className={`text-xs font-bold hidden md:inline ${isDark ? 'text-slate-400' : 'text-slate-900'}`}>API:</span>
             <div
               className={`flex items-center p-1 rounded-xl border text-xs font-medium ${
                 isDark ? 'bg-slate-900/60 border-slate-800' : 'bg-slate-100 border-slate-200'
@@ -274,7 +313,7 @@ export function CnpjSearchForm({
                     ? 'bg-emerald-600 text-white shadow-xs'
                     : isDark
                     ? 'text-slate-400 hover:text-white'
-                    : 'text-slate-700 hover:text-slate-950 font-semibold'
+                    : 'text-slate-800 hover:text-black font-bold'
                 }`}
               >
                 Auto (Recomendado)
@@ -289,7 +328,7 @@ export function CnpjSearchForm({
                     ? 'bg-emerald-600 text-white shadow-xs'
                     : isDark
                     ? 'text-slate-400 hover:text-white'
-                    : 'text-slate-700 hover:text-slate-950 font-semibold'
+                    : 'text-slate-800 hover:text-black font-bold'
                 }`}
               >
                 BrasilAPI
@@ -304,7 +343,7 @@ export function CnpjSearchForm({
                     ? 'bg-emerald-600 text-white shadow-xs'
                     : isDark
                     ? 'text-slate-400 hover:text-white'
-                    : 'text-slate-700 hover:text-slate-950 font-semibold'
+                    : 'text-slate-800 hover:text-black font-bold'
                 }`}
               >
                 CNPJ.ws
@@ -318,7 +357,7 @@ export function CnpjSearchForm({
       <form onSubmit={handleSubmit} className="relative">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <div className="relative flex-1">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500 dark:text-slate-400">
               {searchMode === 'empresario' ? (
                 <UserIcon className="w-5 h-5 text-emerald-600" />
               ) : (
@@ -343,7 +382,7 @@ export function CnpjSearchForm({
               } ${
                 isDark
                   ? 'bg-slate-900 text-white placeholder-slate-500 border-slate-700 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500'
-                  : 'bg-white text-slate-900 placeholder-slate-400 border-slate-300 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600'
+                  : 'bg-white text-slate-950 placeholder-slate-600 border-slate-300 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 font-semibold'
               }`}
             />
 
@@ -351,7 +390,7 @@ export function CnpjSearchForm({
               <button
                 type="button"
                 onClick={handleClear}
-                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
                 title="Limpar campo"
               >
                 <XIcon className="w-4 h-4" />
@@ -394,7 +433,7 @@ export function CnpjSearchForm({
           >
             <div
               className={`p-2.5 border-b text-[11px] font-semibold uppercase tracking-wider flex items-center justify-between ${
-                isDark ? 'border-slate-800 text-slate-400 bg-slate-950/60' : 'border-slate-100 text-slate-500 bg-slate-50'
+                isDark ? 'border-slate-800 text-slate-400 bg-slate-950/60' : 'border-slate-200 text-slate-900 font-bold bg-slate-100'
               }`}
             >
               <span>Empresas Encontradas ({searchResults.length})</span>
@@ -406,36 +445,36 @@ export function CnpjSearchForm({
                   key={comp.cnpj}
                   onClick={() => handleSelectCompany(comp)}
                   className={`p-3.5 cursor-pointer transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
-                    isDark ? 'hover:bg-slate-800/80' : 'hover:bg-emerald-50/50'
+                    isDark ? 'hover:bg-slate-800/80' : 'hover:bg-emerald-50/70'
                   }`}
                 >
                   <div className="space-y-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-bold text-sm text-slate-900 dark:text-white">
+                      <span className="font-bold text-sm text-slate-950 dark:text-white">
                         {comp.razaoSocial}
                       </span>
                       {comp.nomeFantasia && comp.nomeFantasia !== comp.razaoSocial && (
-                        <span className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
+                        <span className="text-xs text-emerald-800 dark:text-emerald-400 font-bold">
                           ({comp.nomeFantasia})
                         </span>
                       )}
                     </div>
-                    <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-slate-500 dark:text-slate-400">
+                    <div className={`flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs ${isDark ? 'text-slate-400' : 'text-slate-800 font-medium'}`}>
                       <span>
-                        CNPJ: <strong className="font-mono text-slate-800 dark:text-slate-200">{formatCnpj(comp.cnpj)}</strong>
+                        CNPJ: <strong className={`font-mono ${isDark ? 'text-slate-200' : 'text-slate-950 font-bold'}`}>{formatCnpj(comp.cnpj)}</strong>
                       </span>
                       <span>·</span>
                       <span>
                         {comp.municipio} - {comp.uf}
                       </span>
                       <span>·</span>
-                      <span>{comp.segmento}</span>
+                      <span className={isDark ? 'text-slate-400' : 'text-slate-800 font-medium'}>{comp.segmento}</span>
                     </div>
                     {comp.empresarios.length > 0 && (
-                      <div className="text-xs text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
+                      <div className="text-xs text-emerald-800 dark:text-emerald-400 flex items-center gap-1 font-semibold">
                         <UserIcon className="w-3 h-3 shrink-0" />
                         <span>
-                          Sócio / Fundador: <strong>{comp.empresarios.join(', ')}</strong>
+                          Sócio / Fundador: <strong className="text-slate-950 dark:text-white">{comp.empresarios.join(', ')}</strong>
                         </span>
                       </div>
                     )}
@@ -457,16 +496,16 @@ export function CnpjSearchForm({
               searchFeedback.includes('encontrad')
                 ? isDark
                   ? 'bg-emerald-950/30 text-emerald-300 border-emerald-800'
-                  : 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                  : 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold'
                 : isDark
                 ? 'bg-amber-950/30 text-amber-300 border-amber-800'
-                : 'bg-amber-50 text-amber-800 border-amber-200'
+                : 'bg-amber-50 text-amber-950 border-amber-300 font-semibold'
             }`}
           >
             {searchFeedback.includes('encontrad') ? (
-              <CheckCircleIcon className="w-4 h-4 shrink-0" />
+              <CheckCircleIcon className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
             ) : (
-              <AlertTriangleIcon className="w-4 h-4 shrink-0" />
+              <AlertTriangleIcon className="w-4 h-4 shrink-0 text-amber-600 dark:text-amber-400" />
             )}
             <span>{searchFeedback}</span>
           </div>
@@ -478,43 +517,47 @@ export function CnpjSearchForm({
             {isInputNumeric ? (
               rawDigits.length === 14 ? (
                 validation?.isValid ? (
-                  <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+                  <span className="flex items-center gap-1 text-emerald-800 dark:text-emerald-400 font-bold">
                     <CheckCircleIcon className="w-3.5 h-3.5" />
                     Formato de CNPJ válido
                   </span>
                 ) : (
-                  <span className="flex items-center gap-1 text-amber-600 dark:text-amber-400 font-medium">
+                  <span className="flex items-center gap-1 text-amber-800 dark:text-amber-400 font-bold">
                     <AlertTriangleIcon className="w-3.5 h-3.5" />
                     {validation?.message || 'Dígitos verificadores inconsistentes'}
                   </span>
                 )
               ) : rawDigits.length > 0 ? (
-                <span className="text-slate-500 dark:text-slate-400">
+                <span className="text-slate-800 dark:text-slate-300 font-semibold">
                   {rawDigits.length} de 14 dígitos digitados
                 </span>
               ) : (
-                <span className="text-slate-500 dark:text-slate-400">
+                <span className="text-slate-800 dark:text-slate-300 font-medium">
                   Digite os 14 dígitos ou pesquise pelo nome da empresa / empresário
                 </span>
               )
             ) : value.length > 0 ? (
-              <span className="text-slate-500 dark:text-slate-400">
+              <span className={isDark ? 'text-slate-400' : 'text-slate-900 font-semibold'}>
                 Pressione Enter ou clique em Consultar para buscar
               </span>
             ) : (
-              <span className="text-slate-500 dark:text-slate-400">
+              <span className={isDark ? 'text-slate-400' : 'text-slate-900 font-medium'}>
                 Busca oficial: CNPJ, Razão Social, Nome Fantasia ou Empresário
               </span>
             )}
           </div>
 
-          <div className="flex items-center gap-2 text-slate-400 dark:text-slate-500 font-mono text-[11px] hidden sm:flex">
+          <div className={`flex items-center gap-2 font-mono text-[11px] hidden sm:flex ${isDark ? 'text-slate-400' : 'text-slate-900 font-bold'}`}>
             <span>Fontes:</span>
-            <span className={apiProvider === 'brasilapi' ? 'text-emerald-600 font-semibold' : ''}>
+            <span className={apiProvider === 'auto' ? 'text-emerald-800 dark:text-emerald-400 font-extrabold' : ''}>
+              Automático (Ativo)
+            </span>
+            <span>·</span>
+            <span className={apiProvider === 'brasilapi' ? 'text-emerald-800 dark:text-emerald-400 font-extrabold' : ''}>
               BrasilAPI
             </span>
             <span>·</span>
-            <span className={apiProvider === 'cnpjws' ? 'text-emerald-600 font-semibold' : ''}>
+            <span className={apiProvider === 'cnpjws' ? 'text-emerald-800 dark:text-emerald-400 font-extrabold' : ''}>
               CNPJ.ws
             </span>
           </div>
@@ -523,20 +566,20 @@ export function CnpjSearchForm({
 
       {/* Quick Example Suggestions */}
       <div className="flex flex-wrap items-center gap-2 pt-1">
-        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Exemplos rápidos:</span>
+        <span className={`text-xs font-bold ${isDark ? 'text-slate-400' : 'text-slate-950 font-bold'}`}>Exemplos rápidos:</span>
         {SAMPLE_CNPJS.map((sample) => (
           <button
             key={sample.cnpj}
             type="button"
             onClick={() => {
               setValue(sample.cnpj);
-              onSearch(cleanDigits(sample.cnpj), apiProvider);
+              onSearch(cleanDigits(sample.cnpj), 'auto');
             }}
             disabled={isLoading || isResolvingName}
-            className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md border transition-colors disabled:opacity-50 ${
+            className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-md border transition-colors disabled:opacity-50 ${
               isDark
                 ? 'bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border-slate-800 hover:border-slate-700'
-                : 'bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 border-slate-200 hover:border-slate-300 shadow-xs'
+                : 'bg-white hover:bg-slate-100 text-slate-950 hover:text-black border-slate-300 hover:border-slate-400 shadow-xs font-semibold'
             }`}
           >
             <span>{sample.name}</span>

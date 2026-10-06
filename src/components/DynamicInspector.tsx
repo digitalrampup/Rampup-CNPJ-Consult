@@ -203,7 +203,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
             {/* View Mode Toggle */}
             <div
               className={`flex items-center p-1 rounded-lg border ${
-                isDark ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-2xs'
+                isDark ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-300 shadow-2xs'
               }`}
             >
               <button
@@ -213,13 +213,13 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                   viewMode === 'structured'
                     ? isDark
                       ? 'bg-slate-800 text-white shadow-xs'
-                      : 'bg-slate-100 text-slate-900 shadow-2xs'
+                      : 'bg-slate-100 text-slate-950 shadow-2xs font-bold'
                     : isDark
                     ? 'text-slate-400 hover:text-white'
-                    : 'text-slate-600 hover:text-slate-900'
+                    : 'text-slate-800 hover:text-black font-semibold'
                 }`}
               >
-                <LayersIcon className="w-3.5 h-3.5 text-emerald-500" />
+                <LayersIcon className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Leitura Estruturada</span>
               </button>
 
@@ -230,13 +230,13 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                   viewMode === 'tree'
                     ? isDark
                       ? 'bg-slate-800 text-white shadow-xs'
-                      : 'bg-slate-100 text-slate-900 shadow-2xs'
+                      : 'bg-slate-100 text-slate-950 shadow-2xs font-bold'
                     : isDark
                     ? 'text-slate-400 hover:text-white'
-                    : 'text-slate-600 hover:text-slate-900'
+                    : 'text-slate-800 hover:text-black font-semibold'
                 }`}
               >
-                <CodeIcon className="w-3.5 h-3.5 text-cyan-500" />
+                <CodeIcon className="w-3.5 h-3.5 text-cyan-600" />
                 <span>Árvore de Atributos</span>
               </button>
             </div>
@@ -254,7 +254,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                   ? 'bg-emerald-600 text-white'
                   : isDark
                   ? 'bg-slate-900 text-slate-300 hover:text-white border border-slate-800'
-                  : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'
+                  : 'bg-white text-slate-800 hover:text-black border border-slate-300 shadow-2xs'
               }`}
             >
               Todos os Dados
@@ -268,7 +268,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                   ? 'bg-emerald-600 text-white'
                   : isDark
                   ? 'bg-slate-900 text-slate-300 hover:text-white border border-slate-800'
-                  : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'
+                  : 'bg-white text-slate-800 hover:text-black border border-slate-300 shadow-2xs'
               }`}
             >
               Identificação & Porte
@@ -282,7 +282,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                   ? 'bg-emerald-600 text-white'
                   : isDark
                   ? 'bg-slate-900 text-slate-300 hover:text-white border border-slate-800'
-                  : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'
+                  : 'bg-white text-slate-800 hover:text-black border border-slate-300 shadow-2xs'
               }`}
             >
               Endereço & Contatos
@@ -296,7 +296,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                   ? 'bg-emerald-600 text-white'
                   : isDark
                   ? 'bg-slate-900 text-slate-300 hover:text-white border border-slate-800'
-                  : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'
+                  : 'bg-white text-slate-800 hover:text-black border border-slate-300 shadow-2xs'
               }`}
             >
               Atividades Econômicas ({cnaesSecundarios.length + 1})
@@ -310,7 +310,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                   ? 'bg-emerald-600 text-white'
                   : isDark
                   ? 'bg-slate-900 text-slate-300 hover:text-white border border-slate-800'
-                  : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200'
+                  : 'bg-white text-slate-800 hover:text-black border border-slate-300 shadow-2xs'
               }`}
             >
               Sócios e Administradores ({socios.length})
@@ -654,7 +654,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
 
               {/* CNAEs Secundários */}
               <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs text-slate-500">
+                <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-400">
                   <span>Atividades Secundárias ({filteredCnaesSecundarios.length} de {cnaesSecundarios.length})</span>
                   {cnaesSecundarios.length > 0 && (
                     <button
@@ -665,7 +665,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                           'all-cnaes'
                         )
                       }
-                      className="text-emerald-600 hover:text-emerald-500 font-semibold cursor-pointer"
+                      className="text-emerald-700 dark:text-emerald-500 hover:underline font-bold cursor-pointer"
                     >
                       {copiedKey === 'all-cnaes' ? 'Copiado!' : 'Copiar Lista de CNAEs'}
                     </button>
@@ -685,7 +685,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                           <span className="font-semibold text-slate-900 dark:text-white block">
                             {act.descricao}
                           </span>
-                          <span className="text-[11px] text-slate-500">
+                          <span className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
                             Seção {act.secao || '-'} · Divisão {act.divisao || '-'}
                           </span>
                         </div>
@@ -696,7 +696,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                     ))}
                   </div>
                 ) : (
-                  <div className={`p-4 text-center text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                  <div className={`p-4 text-center text-xs ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
                     Nenhuma atividade secundária encontrada.
                   </div>
                 )}
@@ -714,7 +714,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                     4. Quadro de Sócios e Administradores (QSA)
                   </h3>
                 </div>
-                <span className="text-xs font-semibold text-slate-500">
+                <span className="text-xs font-bold text-slate-700 dark:text-slate-400">
                   {socios.length} membro(s) registrado(s)
                 </span>
               </div>
@@ -733,24 +733,24 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                           <span className={`font-bold text-sm block ${isDark ? 'text-white' : 'text-slate-900'}`}>
                             {socio.nome}
                           </span>
-                          <span className="text-xs text-emerald-700 dark:text-emerald-400 font-semibold">
+                          <span className="text-xs text-emerald-700 dark:text-emerald-400 font-bold">
                             {socio.qualificacao_socio?.descricao || 'Sócio'}
                           </span>
                         </div>
-                        <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                        <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-400 font-medium">
                           {socio.tipo || 'Pessoa'}
                         </span>
                       </div>
 
-                      <div className="pt-1 border-t flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 dark:text-slate-400">
+                      <div className="pt-1 border-t flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-700 dark:text-slate-400 font-medium">
                         {socio.data_entrada && (
-                          <span>Entrada: <strong className="text-slate-800 dark:text-slate-200">{formatDate(socio.data_entrada)}</strong></span>
+                          <span>Entrada: <strong className="text-slate-900 dark:text-slate-200 font-bold">{formatDate(socio.data_entrada)}</strong></span>
                         )}
                         {socio.faixa_etaria && socio.faixa_etaria !== 'Não se aplica' && (
-                          <span>Idade: <strong className="text-slate-800 dark:text-slate-200">{socio.faixa_etaria}</strong></span>
+                          <span>Idade: <strong className="text-slate-900 dark:text-slate-200 font-bold">{socio.faixa_etaria}</strong></span>
                         )}
                         {socio.nome_representante && (
-                          <span className="w-full text-amber-600 dark:text-amber-400">
+                          <span className="w-full text-amber-700 dark:text-amber-400 font-semibold">
                             Representante: {socio.nome_representante}
                           </span>
                         )}
@@ -759,7 +759,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                   ))}
                 </div>
               ) : (
-                <div className={`p-6 text-center text-xs rounded-xl border ${isDark ? 'border-slate-800 text-slate-400' : 'border-slate-200 text-slate-500'}`}>
+                <div className={`p-6 text-center text-xs rounded-xl border ${isDark ? 'border-slate-800 text-slate-400' : 'border-slate-200 text-slate-700 font-medium'}`}>
                   Nenhum sócio ou administrador registrado na base pública da Receita Federal (típico de MEI, EI ou sociedade anônima).
                 </div>
               )}
@@ -783,23 +783,23 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                     isDark ? 'bg-slate-950/40 border-slate-800' : 'bg-white border-slate-200'
                   }`}
                 >
-                  <span className="text-xs font-semibold text-slate-500">Opção pelo Simples Nacional</span>
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-400">Opção pelo Simples Nacional</span>
                   <div className="flex items-center gap-2">
                     <span
                       className={`text-sm font-bold ${
-                        isSimplesOptante ? 'text-emerald-600' : 'text-slate-700 dark:text-slate-300'
+                        isSimplesOptante ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-800 dark:text-slate-300'
                       }`}
                     >
                       {isSimplesOptante ? 'Optante pelo Simples Nacional' : 'Não Optante pelo Simples Nacional'}
                     </span>
                   </div>
                   {simples?.data_opcao_simples && (
-                    <p className="text-xs text-slate-500">
-                      Optante desde: <strong>{formatDate(simples.data_opcao_simples)}</strong>
+                    <p className="text-xs text-slate-700 dark:text-slate-400 font-medium">
+                      Optante desde: <strong className="text-slate-900 dark:text-slate-200">{formatDate(simples.data_opcao_simples)}</strong>
                     </p>
                   )}
                   {simples?.data_exclusao_simples && (
-                    <p className="text-xs text-rose-500">
+                    <p className="text-xs text-rose-600 font-semibold">
                       Excluído em: <strong>{formatDate(simples.data_exclusao_simples)}</strong>
                     </p>
                   )}
@@ -811,23 +811,23 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                     isDark ? 'bg-slate-950/40 border-slate-800' : 'bg-white border-slate-200'
                   }`}
                 >
-                  <span className="text-xs font-semibold text-slate-500">Enquadramento SIMEI (MEI)</span>
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-400">Enquadramento SIMEI (MEI)</span>
                   <div className="flex items-center gap-2">
                     <span
                       className={`text-sm font-bold ${
-                        isMeiOptante ? 'text-emerald-600' : 'text-slate-700 dark:text-slate-300'
+                        isMeiOptante ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-800 dark:text-slate-300'
                       }`}
                     >
                       {isMeiOptante ? 'Enquadrado como MEI' : 'Não Enquadrado como MEI'}
                     </span>
                   </div>
                   {simples?.data_opcao_mei && (
-                    <p className="text-xs text-slate-500">
-                      Optante desde: <strong>{formatDate(simples.data_opcao_mei)}</strong>
+                    <p className="text-xs text-slate-700 dark:text-slate-400 font-medium">
+                      Optante desde: <strong className="text-slate-900 dark:text-slate-200">{formatDate(simples.data_opcao_mei)}</strong>
                     </p>
                   )}
                   {simples?.data_exclusao_mei && (
-                    <p className="text-xs text-rose-500">
+                    <p className="text-xs text-rose-600 font-semibold">
                       Excluído em: <strong>{formatDate(simples.data_exclusao_mei)}</strong>
                     </p>
                   )}
@@ -841,10 +841,10 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold text-slate-500">
+                      <span className="text-xs font-bold text-slate-700 dark:text-slate-400">
                         Histórico de Forma de Tributação (BrasilAPI / ECF Receita Federal)
                       </span>
-                      <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
+                      <span className="text-[11px] font-mono text-emerald-700 dark:text-emerald-400 font-bold">
                         {data.regime_tributario.length} exercício(s)
                       </span>
                     </div>
@@ -855,13 +855,13 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border ${
                             isDark
                               ? 'bg-slate-900 border-slate-700 text-slate-200'
-                              : 'bg-slate-50 border-slate-200 text-slate-800'
+                              : 'bg-slate-50 border-slate-200 text-slate-900'
                           }`}
                         >
-                          <span className="font-bold text-emerald-600 dark:text-emerald-400">{reg.ano}:</span>
-                          <span>{reg.forma_de_tributacao}</span>
+                          <span className="font-bold text-emerald-700 dark:text-emerald-400">{reg.ano}:</span>
+                          <span className="font-medium">{reg.forma_de_tributacao}</span>
                           {reg.quantidade_de_escrituracoes > 1 && (
-                            <span className="text-[10px] text-slate-400">({reg.quantidade_de_escrituracoes} escrit.)</span>
+                            <span className="text-[10px] text-slate-500 font-medium">({reg.quantidade_de_escrituracoes} escrit.)</span>
                           )}
                         </div>
                       ))}
@@ -882,7 +882,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                     6. Inscrições Estaduais (Sintegra / SEFAZ)
                   </h3>
                 </div>
-                <span className="text-xs font-semibold text-slate-500">
+                <span className="text-xs font-bold text-slate-700 dark:text-slate-400">
                   {inscricoes.length} inscrição(ões)
                 </span>
               </div>
@@ -904,7 +904,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                           <button
                             type="button"
                             onClick={() => handleCopy(ie.inscricao_estadual, `ie-${idx}`)}
-                            className="text-slate-400 hover:text-slate-600 dark:hover:text-white cursor-pointer"
+                            className="text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer"
                             title="Copiar IE"
                           >
                             {copiedKey === `ie-${idx}` ? (
@@ -914,8 +914,8 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                             )}
                           </button>
                         </div>
-                        <span className="text-xs text-slate-500">
-                          UF: <strong className="text-slate-800 dark:text-slate-200">{ie.estado?.sigla || ie.estado?.nome || '-'}</strong>
+                        <span className="text-xs text-slate-700 dark:text-slate-400 font-medium">
+                          UF: <strong className="text-slate-900 dark:text-slate-200 font-bold">{ie.estado?.sigla || ie.estado?.nome || '-'}</strong>
                           {ie.atualizado_em && ` · ${formatDate(ie.atualizado_em)}`}
                         </span>
                       </div>
@@ -937,7 +937,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                   ))}
                 </div>
               ) : (
-                <div className={`p-6 text-center text-xs rounded-xl border ${isDark ? 'border-slate-800 text-slate-400' : 'border-slate-200 text-slate-500'}`}>
+                <div className={`p-6 text-center text-xs rounded-xl border ${isDark ? 'border-slate-800 text-slate-400' : 'border-slate-200 text-slate-700 font-medium'}`}>
                   Nenhuma inscrição estadual registrada para esta pessoa jurídica.
                 </div>
               )}

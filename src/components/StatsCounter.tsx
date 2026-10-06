@@ -37,11 +37,11 @@ export function StatsCounter({ data, theme = 'dark' }: StatsCounterProps) {
 
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              <span className={`text-xs font-bold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-800'}`}>
                 Preenchimento Cadastral
               </span>
               <span className="text-slate-400">·</span>
-              <span className={`text-xs font-mono ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+              <span className={`text-xs font-mono font-medium ${isDark ? 'text-slate-300' : 'text-slate-800'}`}>
                 {stats.filledFields} de {stats.totalFields} atributos
               </span>
             </div>
@@ -54,7 +54,7 @@ export function StatsCounter({ data, theme = 'dark' }: StatsCounterProps) {
               />
             </div>
 
-            <div className={`flex items-center gap-3 text-[11px] pt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+            <div className={`flex items-center gap-3 text-[11px] pt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
               <span>{stats.filledFields} preenchidos</span>
               <span>·</span>
               <span>{stats.emptyFields} nulos/vazios</span>
@@ -64,24 +64,24 @@ export function StatsCounter({ data, theme = 'dark' }: StatsCounterProps) {
 
         {/* Dynamic Items Counters */}
         <div className={`flex flex-wrap items-center gap-2 border-t md:border-t-0 md:border-l pt-3 md:pt-0 md:pl-6 ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
-          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${isDark ? 'bg-slate-950/60 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-700'}`}>
+          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${isDark ? 'bg-slate-950/60 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-800 font-medium'}`}>
             <UsersIcon className="w-3.5 h-3.5 text-purple-500" />
             <span className="text-xs">
-              <strong className={`font-mono font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{sociosCount}</strong> sócio(s)
+              <strong className={`font-mono font-bold ${isDark ? 'text-white' : 'text-slate-950'}`}>{sociosCount}</strong> sócio(s)
             </span>
           </div>
 
-          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${isDark ? 'bg-slate-950/60 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-700'}`}>
+          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${isDark ? 'bg-slate-950/60 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-800 font-medium'}`}>
             <LayersIcon className="w-3.5 h-3.5 text-cyan-500" />
             <span className="text-xs">
-              <strong className={`font-mono font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{ieCount}</strong> Inscrição Estadual
+              <strong className={`font-mono font-bold ${isDark ? 'text-white' : 'text-slate-950'}`}>{ieCount}</strong> Inscrição Estadual
             </span>
           </div>
 
-          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${isDark ? 'bg-slate-950/60 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-700'}`}>
+          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border ${isDark ? 'bg-slate-950/60 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-800 font-medium'}`}>
             <FileTextIcon className="w-3.5 h-3.5 text-amber-500" />
             <span className="text-xs">
-              <strong className={`font-mono font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{cnaeSecundariosCount}</strong> CNAEs secundários
+              <strong className={`font-mono font-bold ${isDark ? 'text-white' : 'text-slate-950'}`}>{cnaeSecundariosCount}</strong> CNAEs secundários
             </span>
           </div>
         </div>

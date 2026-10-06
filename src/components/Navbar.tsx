@@ -56,14 +56,14 @@ export function Navbar({
         <nav className="flex items-center gap-1 sm:gap-2">
           <button
             onClick={() => onTabChange('summary')}
-            className={`flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${
+            className={`flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
               activeTab === 'summary'
                 ? isDark
                   ? 'bg-slate-800 text-white shadow-sm border border-slate-700'
-                  : 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                  : 'bg-white text-slate-950 shadow-sm border border-slate-300 font-bold'
                 : isDark
                 ? 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                : 'text-slate-800 hover:text-slate-950 hover:bg-slate-100'
             }`}
           >
             <span>Resumo</span>
@@ -71,14 +71,14 @@ export function Navbar({
 
           <button
             onClick={() => onTabChange('dynamic')}
-            className={`flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${
+            className={`flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
               activeTab === 'dynamic'
                 ? isDark
                   ? 'bg-slate-800 text-white shadow-sm border border-slate-700'
-                  : 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                  : 'bg-white text-slate-950 shadow-sm border border-slate-300 font-bold'
                 : isDark
                 ? 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                : 'text-slate-800 hover:text-slate-950 hover:bg-slate-100'
             }`}
           >
             <LayersIcon className="w-4 h-4 text-emerald-500" />
@@ -87,14 +87,14 @@ export function Navbar({
 
           <button
             onClick={() => onTabChange('json')}
-            className={`flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${
+            className={`flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
               activeTab === 'json'
                 ? isDark
                   ? 'bg-slate-800 text-white shadow-sm border border-slate-700'
-                  : 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                  : 'bg-white text-slate-950 shadow-sm border border-slate-300 font-bold'
                 : isDark
                 ? 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                : 'text-slate-800 hover:text-slate-950 hover:bg-slate-100'
             }`}
           >
             <CodeIcon className="w-4 h-4 text-cyan-500" />

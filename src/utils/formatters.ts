@@ -1,4 +1,4 @@
-import { FieldCountStats } from '../types/cnpj';
+import type { FieldCountStats } from '../types/cnpj.ts';
 
 /**
  * Removes non-numeric characters from a string
