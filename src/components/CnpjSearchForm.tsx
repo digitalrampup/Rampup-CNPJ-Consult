@@ -28,7 +28,7 @@ interface CnpjSearchFormProps {
 
 const SAMPLE_CNPJS = [
   { name: 'Magazine Luiza (Luiza Trajano)', cnpj: '47.960.950/0001-21' },
-  { name: 'Lojas Renner', cnpj: '92.754.738/0001-62' },
+  { name: 'Rampup - MM', cnpj: '37.784.904/0001-65' },
   { name: 'SBT (Silvio Santos)', cnpj: '43.350.131/0001-01' },
   { name: 'Nubank (David Vélez)', cnpj: '30.680.829/0001-43' },
   { name: 'Cimed (João Adibe)', cnpj: '16.619.378/0001-08' },
