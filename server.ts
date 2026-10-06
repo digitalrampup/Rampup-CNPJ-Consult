@@ -15,6 +15,18 @@ const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.json());
 
+function isValidCnpjChecksum(cnpj: string): boolean {
+  const clean = cnpj.replace(/\D/g, '');
+  if (clean.length !== 14 || /^(\d)\1{13}$/.test(clean)) return false;
+  const b = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+  let n = 0;
+  for (let i = 0; i < 12; n += Number(clean[i]) * b[++i]);
+  if (Number(clean[12]) !== ((n %= 11) < 2 ? 0 : 11 - n)) return false;
+  n = 0;
+  for (let i = 0; i <= 12; n += Number(clean[i]) * b[i++]);
+  return Number(clean[13]) === ((n %= 11) < 2 ? 0 : 11 - n);
+}
+
 /**
  * Online CNPJ search resolver for companies or entrepreneurs not in the local catalog.
  * Searches public web indexing (Bing Brasil + DuckDuckGo + Yahoo) for Brazilian CNPJs and enriches via BrasilAPI.
@@ -26,6 +38,30 @@ async function searchOnlineCnpj(query: string): Promise<CompanySearchRecord[]> {
 
     const seenCnpjs = new Set<string>();
     const searchTerms = `${cleanSearch} cnpj`;
+
+    const extractValidCnpjsFromText = (text: string) => {
+      // 1. Formatted CNPJs: XX.XXX.XXX/XXXX-XX
+      const formatted = text.match(/\b\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}\b/g) || [];
+      for (const m of formatted) {
+        const digits = m.replace(/\D/g, '');
+        if (isValidCnpjChecksum(digits)) seenCnpjs.add(digits);
+      }
+
+      // 2. Unformatted 14-digit sequences
+      const unformatted = text.match(/\b\d{14}\b/g) || [];
+      for (const m of unformatted) {
+        if (isValidCnpjChecksum(m)) seenCnpjs.add(m);
+      }
+
+      // 3. URLs with CNPJ patterns: /cnpj/XXXXXXXXXXXXXX or cnpj.biz/XXXXXXXXXXXXXX
+      const urlCandidates = text.match(/(?:cnpj|empresa|cadastro|consulta)[^\d]{0,10}(\d{14})/gi) || [];
+      for (const c of urlCandidates) {
+        const digits = c.replace(/\D/g, '');
+        if (digits.length === 14 && isValidCnpjChecksum(digits)) {
+          seenCnpjs.add(digits);
+        }
+      }
+    };
 
     // 1. Primary engine: Bing (highly reliable, returns 200 OK without blocking)
     try {
@@ -46,12 +82,7 @@ async function searchOnlineCnpj(query: string): Promise<CompanySearchRecord[]> {
 
       if (bRes.ok) {
         const bHtml = await bRes.text();
-        const matches = bHtml.match(/\b\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}\b/g) || [];
-        for (const m of matches) {
-          const digits = m.replace(/\D/g, '');
-          if (digits.length === 14) seenCnpjs.add(digits);
-          if (seenCnpjs.size >= 5) break;
-        }
+        extractValidCnpjsFromText(bHtml);
       }
     } catch (bErr) {
       console.warn('Bing search lookup error:', bErr);
@@ -77,12 +108,7 @@ async function searchOnlineCnpj(query: string): Promise<CompanySearchRecord[]> {
 
         if (ddgRes.ok) {
           const ddgHtml = await ddgRes.text();
-          const matches = ddgHtml.match(/\b\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}\b/g) || [];
-          for (const m of matches) {
-            const digits = m.replace(/\D/g, '');
-            if (digits.length === 14) seenCnpjs.add(digits);
-            if (seenCnpjs.size >= 5) break;
-          }
+          extractValidCnpjsFromText(ddgHtml);
         }
       } catch (ddgErr) {
         console.warn('DuckDuckGo search lookup error:', ddgErr);
@@ -109,12 +135,7 @@ async function searchOnlineCnpj(query: string): Promise<CompanySearchRecord[]> {
 
         if (yRes.ok) {
           const yHtml = await yRes.text();
-          const matches = yHtml.match(/\b\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}\b/g) || [];
-          for (const m of matches) {
-            const digits = m.replace(/\D/g, '');
-            if (digits.length === 14) seenCnpjs.add(digits);
-            if (seenCnpjs.size >= 5) break;
-          }
+          extractValidCnpjsFromText(yHtml);
         }
       } catch (yErr) {
         console.warn('Yahoo search lookup error:', yErr);

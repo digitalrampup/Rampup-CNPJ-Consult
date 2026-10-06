@@ -42,7 +42,7 @@ export function SearchHistory({ items, onSelect, onClear, currentCnpj, theme = '
                   : 'bg-white text-slate-800 font-medium border-slate-300 hover:bg-slate-50 hover:text-slate-950 shadow-xs'
               }`}
             >
-              <BuildingIcon className="w-3 h-3 text-slate-500 dark:text-slate-400" />
+              <BuildingIcon className="w-3 h-3 text-slate-700 dark:text-slate-400" />
               <span className="max-w-[140px] truncate">{item.razaoSocial || formatCnpj(item.cnpj)}</span>
             </button>
           );

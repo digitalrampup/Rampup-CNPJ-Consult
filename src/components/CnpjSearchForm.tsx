@@ -152,16 +152,21 @@ export function CnpjSearchForm({
 
   const handleModeSwitch = (mode: 'cnpj' | 'razao' | 'empresario') => {
     setSearchMode(mode);
-    setValue('');
-    setSearchResults([]);
-    setIsDropdownOpen(false);
     setSearchFeedback(null);
+    // Keep typed value intact if user already started typing
+    if (value.trim().length >= 2) {
+      const effectiveMode = mode === 'cnpj' ? 'all' : mode;
+      const results = searchCompanies(value.trim(), effectiveMode);
+      setSearchResults(results);
+      setIsDropdownOpen(results.length > 0);
+    }
     inputRef.current?.focus();
   };
 
   const handleSelectCompany = (comp: CompanySearchRecord) => {
     setValue(formatCnpj(comp.cnpj));
     setIsDropdownOpen(false);
+    setSearchFeedback(`Consultando ${comp.razaoSocial} (CNPJ: ${formatCnpj(comp.cnpj)})...`);
     onSearch(comp.cnpj, 'auto'); // Sempre modo automático!
   };
 
@@ -189,13 +194,12 @@ export function CnpjSearchForm({
     // First check in-memory local catalog matches
     const localMatches = searchCompanies(trimmed, effectiveMode);
     if (localMatches.length > 0) {
-      // Auto-select and consult the best match immediately!
       const topMatch = localMatches[0];
       handleSelectCompany(topMatch);
 
       if (localMatches.length > 1) {
         setSearchResults(localMatches);
-        setSearchFeedback(`Consultando ${topMatch.razaoSocial}. ${localMatches.length - 1} outra(s) correspondência(s) encontrada(s):`);
+        setSearchFeedback(`Consultando ${topMatch.razaoSocial} (CNPJ: ${formatCnpj(topMatch.cnpj)}). ${localMatches.length - 1} outra(s) correspondência(s) encontrada(s):`);
       }
       return;
     }
@@ -211,7 +215,7 @@ export function CnpjSearchForm({
         handleSelectCompany(topOnline);
         if (onlineMatches.length > 1) {
           setSearchResults(onlineMatches);
-          setSearchFeedback(`Consultando ${topOnline.razaoSocial}. ${onlineMatches.length - 1} outro(s) resultado(s) disponível(is):`);
+          setSearchFeedback(`Consultando ${topOnline.razaoSocial} (CNPJ: ${formatCnpj(topOnline.cnpj)}). ${onlineMatches.length - 1} outro(s) resultado(s) disponível(is):`);
         }
       } else {
         setSearchFeedback(
@@ -241,7 +245,7 @@ export function CnpjSearchForm({
 
   return (
     <div className="w-full space-y-3">
-      {/* Top Controls: Mode Selector & API Provider Switcher */}
+      {/* Top Controls: Mode Selector & Perpetual Automatic API Indicator */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         {/* Mode Selector Tabs */}
         <div
@@ -252,11 +256,11 @@ export function CnpjSearchForm({
           <button
             type="button"
             onClick={() => handleModeSwitch('cnpj')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
               searchMode === 'cnpj'
                 ? 'bg-emerald-600 text-white shadow-sm'
                 : isDark
-                ? 'text-slate-400 hover:text-white'
+                ? 'text-slate-300 hover:text-white'
                 : 'text-slate-800 font-bold hover:text-black'
             }`}
           >
@@ -267,11 +271,11 @@ export function CnpjSearchForm({
           <button
             type="button"
             onClick={() => handleModeSwitch('razao')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
               searchMode === 'razao'
                 ? 'bg-emerald-600 text-white shadow-sm'
                 : isDark
-                ? 'text-slate-400 hover:text-white'
+                ? 'text-slate-300 hover:text-white'
                 : 'text-slate-800 font-bold hover:text-black'
             }`}
           >
@@ -282,11 +286,11 @@ export function CnpjSearchForm({
           <button
             type="button"
             onClick={() => handleModeSwitch('empresario')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
               searchMode === 'empresario'
                 ? 'bg-emerald-600 text-white shadow-sm'
                 : isDark
-                ? 'text-slate-400 hover:text-white'
+                ? 'text-slate-300 hover:text-white'
                 : 'text-slate-800 font-bold hover:text-black'
             }`}
           >
@@ -295,62 +299,21 @@ export function CnpjSearchForm({
           </button>
         </div>
 
-        {/* API Provider Selector */}
-        {onProviderChange && (
-          <div className="flex items-center gap-2">
-            <span className={`text-xs font-bold hidden md:inline ${isDark ? 'text-slate-400' : 'text-slate-900'}`}>API:</span>
-            <div
-              className={`flex items-center p-1 rounded-xl border text-xs font-medium ${
-                isDark ? 'bg-slate-900/60 border-slate-800' : 'bg-slate-100 border-slate-200'
-              }`}
-            >
-              <button
-                type="button"
-                onClick={() => onProviderChange('auto')}
-                title="Automático: consulta inteligente com contingência em cascata (BrasilAPI + CNPJ.ws)"
-                className={`px-2.5 py-1 rounded-lg transition-all font-semibold ${
-                  apiProvider === 'auto'
-                    ? 'bg-emerald-600 text-white shadow-xs'
-                    : isDark
-                    ? 'text-slate-400 hover:text-white'
-                    : 'text-slate-800 hover:text-black font-bold'
-                }`}
-              >
-                Auto (Recomendado)
-              </button>
-
-              <button
-                type="button"
-                onClick={() => onProviderChange('brasilapi')}
-                title="BrasilAPI: consulta completa da Receita Federal sem limite restrito por minuto"
-                className={`px-2.5 py-1 rounded-lg transition-all font-semibold ${
-                  apiProvider === 'brasilapi'
-                    ? 'bg-emerald-600 text-white shadow-xs'
-                    : isDark
-                    ? 'text-slate-400 hover:text-white'
-                    : 'text-slate-800 hover:text-black font-bold'
-                }`}
-              >
-                BrasilAPI
-              </button>
-
-              <button
-                type="button"
-                onClick={() => onProviderChange('cnpjws')}
-                title="CNPJ.ws: dados da Receita Federal com suporte a Inscrição Estadual"
-                className={`px-2.5 py-1 rounded-lg transition-all font-semibold ${
-                  apiProvider === 'cnpjws'
-                    ? 'bg-emerald-600 text-white shadow-xs'
-                    : isDark
-                    ? 'text-slate-400 hover:text-white'
-                    : 'text-slate-800 hover:text-black font-bold'
-                }`}
-              >
-                CNPJ.ws
-              </button>
-            </div>
+        {/* Perpetual Automatic Mode Badge (Sempre que for consultar as APIs deixe no modo automático) */}
+        <div className="flex items-center gap-2">
+          <span className={`text-xs font-bold hidden md:inline ${isDark ? 'text-slate-300' : 'text-slate-900 font-extrabold'}`}>API:</span>
+          <div
+            title="Sempre no modo automático com redundância inteligente entre BrasilAPI e CNPJ.ws"
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold shadow-2xs ${
+              isDark
+                ? 'bg-slate-900/90 border-slate-700 text-emerald-400'
+                : 'bg-emerald-50 border-emerald-300 text-emerald-950 font-bold'
+            }`}
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Modo Automático (Ativo)</span>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Main Search Input Form */}

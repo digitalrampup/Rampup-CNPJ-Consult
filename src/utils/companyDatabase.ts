@@ -1473,6 +1473,547 @@ export const COMPANY_CATALOG: CompanySearchRecord[] = [
     municipio: 'São Paulo',
     segmento: 'Atacarejo de Alimentos',
   },
+  // ==========================================
+  // Farmácias, Drogarias e Saúde
+  // ==========================================
+  {
+    cnpj: '17256509000160',
+    razaoSocial: 'DROGARIA ARAUJO S.A.',
+    nomeFantasia: 'DROGARIA ARAUJO',
+    empresarios: ['Modesto Carvalho de Araujo Neto', 'Alfredo Carvalho de Araujo'],
+    aliases: ['ARAUJO', 'DROGARIA ARAUJO BH', 'ARAUJO MEDICAMENTOS'],
+    uf: 'MG',
+    municipio: 'Belo Horizonte',
+    segmento: 'Farmácias e Drogarias',
+  },
+  {
+    cnpj: '92950788000138',
+    razaoSocial: 'COMERCIO DE MEDICAMENTOS SAO JOAO LTDA',
+    nomeFantasia: 'FARMACIAS SAO JOAO',
+    empresarios: ['Pedro Henrique Brair'],
+    aliases: ['FARMACIA SAO JOAO', 'REDE SAO JOAO', 'SAO JOAO DROGARIAS'],
+    uf: 'RS',
+    municipio: 'Passo Fundo',
+    segmento: 'Farmácias e Medicamentos',
+  },
+  {
+    cnpj: '60448834000192',
+    razaoSocial: 'HOSPITAL SAMARITANO S.A.',
+    nomeFantasia: 'HOSPITAL SAMARITANO / REDE D\'OR',
+    empresarios: ['Paulo Moll', 'Jorge Moll Filho'],
+    aliases: ['SAMARITANO', 'HOSPITAL SAMARITANO HIGIENOPOLIS', 'SAMARITANO PAULISTA'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Hospitais e Serviços Médicos',
+  },
+  {
+    cnpj: '02717904000170',
+    razaoSocial: 'LABORATORIO SABIN DE ANALISES CLINICAS S.A.',
+    nomeFantasia: 'SABIN MEDICINA DIAGNOSTICA',
+    empresarios: ['Janete Vaz', 'Sandra Costa', 'Lídia Abdalla'],
+    aliases: ['SABIN', 'LABORATORIO SABIN', 'GRUPO SABIN'],
+    uf: 'DF',
+    municipio: 'Brasília',
+    segmento: 'Medicina Diagnóstica e Análises Clínicas',
+  },
+  {
+    cnpj: '19378769000191',
+    razaoSocial: 'INSTITUTO HERMES PARDINI S.A.',
+    nomeFantasia: 'HERMES PARDINI',
+    empresarios: ['Roberto Pardini', 'Victor Cavalcanti'],
+    aliases: ['PARDINI', 'LABORATORIO HERMES PARDINI', 'GRUPO FLEURY PARDINI'],
+    uf: 'MG',
+    municipio: 'Belo Horizonte',
+    segmento: 'Medicina Diagnóstica e Laboratórios',
+  },
+  {
+    cnpj: '16697248000196',
+    razaoSocial: 'HOSPITAL MATER DEI S.A.',
+    nomeFantasia: 'MATER DEI',
+    empresarios: ['Henrique Salvador', 'José Salvador Silva'],
+    aliases: ['REDE MATER DEI', 'MATER DEI SANTO AGOSTINHO', 'MATER DEI CONTORNO'],
+    uf: 'MG',
+    municipio: 'Belo Horizonte',
+    segmento: 'Hospitais e Atendimento Médico',
+  },
+  {
+    cnpj: '63554067000198',
+    razaoSocial: 'HAPVIDA PARTICIPACOES E INVESTIMENTOS S.A.',
+    nomeFantasia: 'HAPVIDA NOTREDAME INTERMEDICA',
+    empresarios: ['Candido Pinheiro Koren de Lima', 'Jorge Pinheiro'],
+    aliases: ['HAPVIDA', 'NOTREDAME INTERMEDICA', 'GNDI'],
+    uf: 'CE',
+    municipio: 'Fortaleza',
+    segmento: 'Planos de Saúde e Hospitais',
+  },
+  {
+    cnpj: '01639446000198',
+    razaoSocial: 'SUL AMERICA S.A.',
+    nomeFantasia: 'SULAMERICA SAUDE E SEGUROS',
+    empresarios: ['Gabriel Portella', 'Ricardo Bottas'],
+    aliases: ['SULAMERICA', 'SUL AMERICA', 'SULAMERICA SAUDE'],
+    uf: 'RJ',
+    municipio: 'Rio de Janeiro',
+    segmento: 'Seguros e Planos de Saúde',
+  },
+  {
+    cnpj: '61198164000160',
+    razaoSocial: 'PORTO SEGURO S.A.',
+    nomeFantasia: 'PORTO SEGURO',
+    empresarios: ['Jayme Brasil Garfinkel', 'Bruno Garfinkel', 'Paulo Kakinoff'],
+    aliases: ['PORTO', 'PORTO SEGUROS', 'PORTO SAUDE'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Seguros, Saúde e Finanças',
+  },
+  {
+    cnpj: '33055146000193',
+    razaoSocial: 'BRADESCO SEGUROS S.A.',
+    nomeFantasia: 'BRADESCO SEGUROS E PREVIDENCIA',
+    empresarios: ['Ivan Gontijo', 'Octavio de Lazari Junior'],
+    aliases: ['BRADESCO SAUDE', 'GRUPO BRADESCO SEGUROS'],
+    uf: 'RJ',
+    municipio: 'Rio de Janeiro',
+    segmento: 'Seguros e Saúde Suplementar',
+  },
+  {
+    cnpj: '29309127000179',
+    razaoSocial: 'AMIL ASSISTENCIA MEDICA INTERNACIONAL S.A.',
+    nomeFantasia: 'AMIL',
+    empresarios: ['Edson de Godoy Bueno', 'José Seripieri Filho'],
+    aliases: ['AMIL SAUDE', 'AMIL PLANOS DE SAUDE'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Planos de Saúde e Assistência Médica',
+  },
+  // ==========================================
+  // Gastronomia, Redes e Restaurantes
+  // ==========================================
+  {
+    cnpj: '60882677000100',
+    razaoSocial: 'FASANO GASTRONOMIA E HOTELARIA S.A.',
+    nomeFantasia: 'FASANO / RESTAURANTE FASANO',
+    empresarios: ['Rogério Fasano'],
+    aliases: ['FASANO', 'RESTAURANTE FASANO', 'HOTEL FASANO', 'GERO'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Alta Gastronomia e Hotelaria',
+  },
+  {
+    cnpj: '04534720000180',
+    razaoSocial: 'BELLA PAULISTA RESTAURANTE, PAES, DOCES E CONVENIENCIAS LTDA',
+    nomeFantasia: 'PADARIA BELLA PAULISTA',
+    empresarios: ['Carlos Pereira'],
+    aliases: ['BELLA PAULISTA', 'PADARIA BELLA PAULISTA', 'PADARIA CERQUEIRA CESAR'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Panificação, Confeitaria e Restaurante 24h',
+  },
+  // ==========================================
+  // Supermercados Regionais e Grandes Redes
+  // ==========================================
+  {
+    cnpj: '33045642000180',
+    razaoSocial: 'SUPERMERCADOS GUANABARA S.A.',
+    nomeFantasia: 'SUPERMERCADOS GUANABARA',
+    empresarios: ['Albino Pinho', 'Francisco Pinho'],
+    aliases: ['GUANABARA', 'GUANABARA SUPERMERCADOS', 'ANIVERSARIO GUANABARA'],
+    uf: 'RJ',
+    municipio: 'Rio de Janeiro',
+    segmento: 'Supermercados e Varejo de Alimentos',
+  },
+  {
+    cnpj: '04641376000136',
+    razaoSocial: 'SUPERMERCADOS BH COMERCIO DE ALIMENTOS S.A.',
+    nomeFantasia: 'SUPERMERCADOS BH',
+    empresarios: ['Pedro Lourenço de Oliveira (Pedrinho BH)'],
+    aliases: ['BH SUPERMERCADOS', 'PEDRINHO BH', 'SUPER BH'],
+    uf: 'MG',
+    municipio: 'Belo Horizonte',
+    segmento: 'Supermercados e Atacarejo',
+  },
+  {
+    cnpj: '21840889000105',
+    razaoSocial: 'SUPER NOSSO COMERCIO LTDA.',
+    nomeFantasia: 'SUPER NOSSO / APOIO MINEIRO',
+    empresarios: ['Euler Fuad Nejm'],
+    aliases: ['SUPER NOSSO', 'APOIO MINEIRO', 'GRUPO SUPER NOSSO'],
+    uf: 'MG',
+    municipio: 'Belo Horizonte',
+    segmento: 'Supermercados Gourmet e Atacarejo',
+  },
+  {
+    cnpj: '04595603000180',
+    razaoSocial: 'MART MINAS DISTRIBUICAO E VAREJO LTDA.',
+    nomeFantasia: 'MART MINAS ATACADO E VAREJO',
+    empresarios: ['Murilo Martins', 'Ronaldo Martins'],
+    aliases: ['MART MINAS', 'MART MINAS ATACAREJO'],
+    uf: 'MG',
+    municipio: 'Contagem',
+    segmento: 'Atacarejo e Distribuição',
+  },
+  {
+    cnpj: '83646984000156',
+    razaoSocial: 'A. ANGELONI & CIA. LTDA.',
+    nomeFantasia: 'ANGELONI SUPERMERCADOS',
+    empresarios: ['Antenor Angeloni', 'Arnaldo Angeloni'],
+    aliases: ['ANGELONI', 'REDE ANGELONI'],
+    uf: 'SC',
+    municipio: 'Criciúma',
+    segmento: 'Supermercados e Farmácias',
+  },
+  {
+    cnpj: '76189406000126',
+    razaoSocial: 'CONDOR SUPERMERCADOS S.A.',
+    nomeFantasia: 'SUPERMERCADOS CONDOR',
+    empresarios: ['Pedro Joanir Zonta'],
+    aliases: ['CONDOR', 'REDE CONDOR', 'HIPER CONDOR'],
+    uf: 'PR',
+    municipio: 'Curitiba',
+    segmento: 'Supermercados e Hipermercados',
+  },
+  {
+    cnpj: '76430438000190',
+    razaoSocial: 'IRMAOS MUFFATO & CIA. LTDA.',
+    nomeFantasia: 'SUPER MUFFATO / MAX ATACADISTA',
+    empresarios: ['Ederson Muffato', 'Everton Muffato', 'Eduardo Muffato'],
+    aliases: ['MUFFATO', 'SUPER MUFFATO', 'MAX ATACADISTA'],
+    uf: 'PR',
+    municipio: 'Cascavel',
+    segmento: 'Supermercados e Atacarejo',
+  },
+  {
+    cnpj: '65715971000190',
+    razaoSocial: 'TAUSTE COMERCIO DE ALIMENTOS LTDA.',
+    nomeFantasia: 'TAUSTE SUPERMERCADOS',
+    empresarios: ['Guilherme Cunha'],
+    aliases: ['TAUSTE', 'SUPERMERCADOS TAUSTE'],
+    uf: 'SP',
+    municipio: 'Marília',
+    segmento: 'Supermercados e Varejo Alimentício',
+  },
+  {
+    cnpj: '44959666000130',
+    razaoSocial: 'SAVEGNAGO SUPERMERCADOS LTDA.',
+    nomeFantasia: 'SAVEGNAGO',
+    empresarios: ['Chalita Savegnago', 'Sebastião Edson Savegnago'],
+    aliases: ['SAVEGNAGO', 'SUPERMERCADOS SAVEGNAGO'],
+    uf: 'SP',
+    municipio: 'Sertãozinho',
+    segmento: 'Supermercados e Varejo',
+  },
+  {
+    cnpj: '01937635000120',
+    razaoSocial: 'SONDA SUPERMERCADOS EXPORTACAO E IMPORTACAO S/A',
+    nomeFantasia: 'SONDA SUPERMERCADOS',
+    empresarios: ['Idalmino Sonda', 'Delcir Sonda'],
+    aliases: ['SONDA', 'SUPERMERCADO SONDA'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Supermercados e Varejo',
+  },
+  // ==========================================
+  // Pet, Papelaria e Utilidades
+  // ==========================================
+  {
+    cnpj: '53153938000190',
+    razaoSocial: 'COBASI COMERCIO DE PRODUTOS PARA ANIMAIS LTDA.',
+    nomeFantasia: 'COBASI',
+    empresarios: ['Paulo Nassar', 'João Nassar'],
+    aliases: ['COBASI PET SHOP', 'PET SHOP COBASI'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Pet Shop, Agropecuária e Jardinagem',
+  },
+  {
+    cnpj: '18388123000190',
+    razaoSocial: 'PET CENTER COMERCIO E PARTICIPACOES S.A.',
+    nomeFantasia: 'PETZ',
+    empresarios: ['Sergio Zimerman'],
+    aliases: ['PETZ', 'PETZ PET SHOP'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Pet Shop e Produtos Veterinários',
+  },
+  {
+    cnpj: '43214055000107',
+    razaoSocial: 'KALUNGA S.A. INDUSTRIA GRAFICA E COMERCIO',
+    nomeFantasia: 'KALUNGA',
+    empresarios: ['Paulo Garcia', 'Damião Garcia'],
+    aliases: ['KALUNGA PAPELARIA', 'KALUNGA INFORMATICA'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Papelaria, Material de Escritório e Informática',
+  },
+  // ==========================================
+  // Telecomunicações, Tecnologia e Turismo
+  // ==========================================
+  {
+    cnpj: '40432544000147',
+    razaoSocial: 'CLARO S.A.',
+    nomeFantasia: 'CLARO / EMBRATEL / NET',
+    empresarios: ['José Félix', 'Carlos Slim'],
+    aliases: ['CLARO', 'EMBRATEL', 'NET CLARO', 'CLARO BRASIL'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Telecomunicações e Internet Banda Larga',
+  },
+  {
+    cnpj: '02558157000162',
+    razaoSocial: 'TELEFONICA BRASIL S.A.',
+    nomeFantasia: 'VIVO / TELEFONICA',
+    empresarios: ['Christian Gebara', 'Eduardo Navarro'],
+    aliases: ['VIVO', 'TELEFONICA', 'VIVO TELECOM'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Telecomunicações e Telefonia Celular',
+  },
+  {
+    cnpj: '02421421000111',
+    razaoSocial: 'TIM S.A.',
+    nomeFantasia: 'TIM',
+    empresarios: ['Alberto Griselli'],
+    aliases: ['TIM BRASIL', 'TIM TELECOM'],
+    uf: 'RJ',
+    municipio: 'Rio de Janeiro',
+    segmento: 'Telecomunicações e Telefonia Celular',
+  },
+  {
+    cnpj: '10762983000188',
+    razaoSocial: 'CVC BRASIL OPERADORA E AGENCIA DE VIAGENS S.A.',
+    nomeFantasia: 'CVC VIAGENS',
+    empresarios: ['Guilherme Paulus', 'Fabio Godinho'],
+    aliases: ['CVC', 'CVC BRASIL', 'CVC TURISMO'],
+    uf: 'SP',
+    municipio: 'Santo André',
+    segmento: 'Turismo e Agência de Viagens',
+  },
+  {
+    cnpj: '07575651000159',
+    razaoSocial: 'GOL LINHAS AEREAS S.A.',
+    nomeFantasia: 'GOL / GOL LINHAS AEREAS',
+    empresarios: ['Constantino de Oliveira Junior', 'Celso Ferrer'],
+    aliases: ['GOL', 'GOL TRANSPORTES AEREOS', 'GOL AIRLINES'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Aviação Comercial e Transporte Aéreo',
+  },
+  {
+    cnpj: '09296295000160',
+    razaoSocial: 'AZUL LINHAS AEREAS BRASILEIRAS S.A.',
+    nomeFantasia: 'AZUL',
+    empresarios: ['David Neeleman', 'John Rodgerson'],
+    aliases: ['AZUL LINHAS AEREAS', 'AZUL AIRLINES'],
+    uf: 'SP',
+    municipio: 'Barueri',
+    segmento: 'Aviação Comercial e Transporte Aéreo',
+  },
+  {
+    cnpj: '02012862000160',
+    razaoSocial: 'TAM LINHAS AEREAS S.A. (LATAM AIRLINES BRASIL)',
+    nomeFantasia: 'LATAM AIRLINES',
+    empresarios: ['Jerome Cadier', 'Rolim Amaro'],
+    aliases: ['LATAM', 'TAM', 'LATAM BRASIL', 'TAM LINHAS AEREAS'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Aviação Comercial e Transporte Aéreo',
+  },
+  {
+    cnpj: '62173620000180',
+    razaoSocial: 'SERASA S.A.',
+    nomeFantasia: 'SERASA EXPERIAN',
+    empresarios: ['Valdemir de Oliveira'],
+    aliases: ['SERASA', 'SERASA EXPERIAN', 'CONSULTA SERASA'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Análise de Crédito e Informações Financeiras',
+  },
+  {
+    cnpj: '09346601000125',
+    razaoSocial: 'B3 S.A. - BRASIL, BOLSA, BALCAO',
+    nomeFantasia: 'B3 / BOLSA DE VALORES',
+    empresarios: ['Gilson Finkelsztain'],
+    aliases: ['B3', 'BOVESPA', 'BM&FBOVESPA', 'BOLSA DE VALORES DE SAO PAULO'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Mercado Financeiro e Bolsa de Valores',
+  },
+  // ==========================================
+  // Big Techs no Brasil
+  // ==========================================
+  {
+    cnpj: '06990590000123',
+    razaoSocial: 'GOOGLE BRASIL INTERNET LTDA.',
+    nomeFantasia: 'GOOGLE BRASIL',
+    empresarios: ['Fabio Coelho'],
+    aliases: ['GOOGLE', 'GOOGLE BRASIL', 'ALPHABET BRASIL'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Tecnologia da Informação e Internet',
+  },
+  {
+    cnpj: '60316817000103',
+    razaoSocial: 'MICROSOFT DO BRASIL IMPORTACAO E COMERCIO DE SOFTWARE E VIDEO GAMES LTDA.',
+    nomeFantasia: 'MICROSOFT BRASIL',
+    empresarios: ['Tania Cosentino'],
+    aliases: ['MICROSOFT', 'MICROSOFT BRASIL'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Software, Nuvem e Tecnologia',
+  },
+  {
+    cnpj: '00623904000173',
+    razaoSocial: 'APPLE COMPUTER BRASIL LTDA.',
+    nomeFantasia: 'APPLE BRASIL',
+    empresarios: ['Tim Cook'],
+    aliases: ['APPLE', 'APPLE BRASIL', 'APPLE STORE'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Eletrônicos e Tecnologia',
+  },
+  {
+    cnpj: '15436940000103',
+    razaoSocial: 'AMAZON SERVICOS DE VAREJO DO BRASIL LTDA.',
+    nomeFantasia: 'AMAZON BRASIL',
+    empresarios: ['Daniel Mazini'],
+    aliases: ['AMAZON', 'AMAZON.COM.BR', 'AMAZON BRASIL'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'E-commerce, Nuvem e Tecnologia',
+  },
+  {
+    cnpj: '17895646000187',
+    razaoSocial: 'UBER DO BRASIL TECNOLOGIA LTDA.',
+    nomeFantasia: 'UBER BRASIL',
+    empresarios: ['Dara Khosrowshahi'],
+    aliases: ['UBER', 'UBER BRASIL'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Mobilidade Urbana e Tecnologia',
+  },
+  {
+    cnpj: '18033552000161',
+    razaoSocial: '99 TECNOLOGIA LTDA.',
+    nomeFantasia: '99 / 99APP',
+    empresarios: ['Paulo Veras', 'Renato Freitas'],
+    aliases: ['99', '99 POP', '99 TAXI', 'DIDIGLOBAL'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Mobilidade Urbana e Aplicativos',
+  },
+  // ==========================================
+  // Fintechs, Meios de Pagamento e Bancos Digitais
+  // ==========================================
+  {
+    cnpj: '16501555000157',
+    razaoSocial: 'STONE INSTITUICAO DE PAGAMENTO S.A.',
+    nomeFantasia: 'STONE / TON',
+    empresarios: ['André Street', 'Eduardo Pontes', 'Pedro Zinner'],
+    aliases: ['STONE', 'TON', 'MAQUININHA STONE', 'STONE PAGAMENTOS'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Meios de Pagamento e Maquininhas',
+  },
+  {
+    cnpj: '08561701000101',
+    razaoSocial: 'PAGSEGURO INTERNET S.A. (PAGBANK)',
+    nomeFantasia: 'PAGBANK / PAGSEGURO',
+    empresarios: ['Luiz Frias', 'Alexandre Magnani'],
+    aliases: ['PAGSEGURO', 'PAGBANK', 'MODERNINHA', 'UOL PAGSEGURO'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Banco Digital e Meios de Pagamento',
+  },
+  {
+    cnpj: '01027058000191',
+    razaoSocial: 'CIELO S.A. - INSTITUICAO DE PAGAMENTO',
+    nomeFantasia: 'CIELO',
+    empresarios: ['Estanislau Bassols'],
+    aliases: ['CIELO', 'MAQUININHA CIELO', 'VISANET'],
+    uf: 'SP',
+    municipio: 'Barueri',
+    segmento: 'Meios de Pagamento e Cartões',
+  },
+  {
+    cnpj: '01425787000104',
+    razaoSocial: 'REDECARD S.A.',
+    nomeFantasia: 'REDE / REDECARD',
+    empresarios: ['Marcos Magalhães'],
+    aliases: ['REDE', 'REDECARD', 'MAQUININHA REDE'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Meios de Pagamento e Adquirência',
+  },
+  {
+    cnpj: '22896431000110',
+    razaoSocial: 'PICPAY INSTITUICAO DE PAGAMENTO S.A.',
+    nomeFantasia: 'PICPAY',
+    empresarios: ['José Antônio Batista', 'Eduardo Chedid'],
+    aliases: ['PICPAY', 'PICPAY CARTOES', 'BANCO PICPAY'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Carteira Digital e Banco Digital',
+  },
+  {
+    cnpj: '00416968000101',
+    razaoSocial: 'BANCO INTER S.A.',
+    nomeFantasia: 'BANCO INTER / INTER',
+    empresarios: ['Rubens Menin', 'João Vitor Menin'],
+    aliases: ['INTER', 'BANCO INTER', 'INTERMEDIUM'],
+    uf: 'MG',
+    municipio: 'Belo Horizonte',
+    segmento: 'Banco Digital e Serviços Financeiros',
+  },
+  {
+    cnpj: '31872495000172',
+    razaoSocial: 'BANCO C6 S.A.',
+    nomeFantasia: 'C6 BANK',
+    empresarios: ['Marcelo Kalim', 'Luiz Marcelo Calicchio'],
+    aliases: ['C6', 'C6 BANK', 'BANCO C6'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Banco Digital e Finanças',
+  },
+  {
+    cnpj: '59285411000113',
+    razaoSocial: 'BANCO PAN S.A.',
+    nomeFantasia: 'BANCO PAN',
+    empresarios: ['Carlos Eduardo Guimarães'],
+    aliases: ['BANCO PAN', 'PAN', 'PANAMERICANO'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Banco Múltiplo e Financiamento',
+  },
+  {
+    cnpj: '16670085000155',
+    razaoSocial: 'LOCALIZA RENT A CAR S.A.',
+    nomeFantasia: 'LOCALIZA HERTZ / LOCALIZA',
+    empresarios: ['Salim Mattar', 'Eugênio Mattar', 'Bruno Lasansky'],
+    aliases: ['LOCALIZA', 'LOCALIZA ALUGUEL DE CARROS', 'LOCALIZA HERTZ'],
+    uf: 'MG',
+    municipio: 'Belo Horizonte',
+    segmento: 'Locação de Veículos e Frotas',
+  },
+  {
+    cnpj: '07976147000160',
+    razaoSocial: 'MOVIDA LOCACAO DE VEICULOS S.A.',
+    nomeFantasia: 'MOVIDA ALUGUEL DE CARROS',
+    empresarios: ['Renato Franklin', 'Pedro Almeida'],
+    aliases: ['MOVIDA', 'MOVIDA RENT A CAR', 'GRUPO SIMPAR MOVIDA'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Locação de Veículos',
+  },
+  {
+    cnpj: '04949905000163',
+    razaoSocial: 'UNIDAS LOCADORA S.A.',
+    nomeFantasia: 'UNIDAS',
+    empresarios: ['Luis Fernando Porto'],
+    aliases: ['UNIDAS', 'UNIDAS ALUGUEL DE CARROS'],
+    uf: 'SP',
+    municipio: 'São Paulo',
+    segmento: 'Locação de Veículos e Gestão de Frotas',
+  },
 ];
 
 /**
@@ -1525,7 +2066,8 @@ export function searchCompanies(
   // Filter stop words from tokens
   const stopWords = new Set([
     'de', 'da', 'do', 'das', 'dos', 'em', 'no', 'na', 'nos', 'nas',
-    'e', 'ou', 'com', 'para', 'por', 'sa', 's/a', 'ltda', 'me', 'epp', 'cia'
+    'e', 'ou', 'com', 'para', 'por', 'sa', 's/a', 'ltda', 'me', 'epp',
+    'cia', 'eireli', 'grupo', 'brasil', 'servicos', 'comercio', 'industria'
   ]);
   const queryTokens = normalizedQuery
     .split(/\s+/)
@@ -1559,18 +2101,25 @@ export function searchCompanies(
       score += 75;
     }
 
-    // 2. Token overlap matches using word-level boundaries
+    // 2. Token overlap matches against corporate identity (Razao, Fantasia, Aliases, Empresarios)
     if (queryTokens.length > 0) {
-      const allText = `${normRazao} ${normFantasia} ${normAliases.join(' ')} ${normEmpresarios.join(' ')} ${normSegmento}`;
-      const targetWords = allText.split(/\s+/);
-      const matchedTokens = queryTokens.filter((token) => tokenMatchesWords(targetWords, token));
+      const identityText = `${normRazao} ${normFantasia} ${normAliases.join(' ')} ${normEmpresarios.join(' ')}`;
+      const identityWords = identityText.split(/\s+/);
+      const matchedIdentityTokens = queryTokens.filter((token) => tokenMatchesWords(identityWords, token));
 
-      if (matchedTokens.length === queryTokens.length) {
-        score += 70;
-      } else if (queryTokens.length > 1 && matchedTokens.length >= Math.ceil(queryTokens.length * 0.75)) {
-        score += (matchedTokens.length / queryTokens.length) * 45;
-      } else if (queryTokens.length === 1 && matchedTokens.length === 1 && queryTokens[0].length >= 3) {
-        score += 40;
+      if (matchedIdentityTokens.length === queryTokens.length) {
+        score += 80;
+      } else if (queryTokens.length > 1 && matchedIdentityTokens.length >= Math.ceil(queryTokens.length * 0.6)) {
+        score += (matchedIdentityTokens.length / queryTokens.length) * 55;
+      } else if (queryTokens.length === 1 && matchedIdentityTokens.length === 1) {
+        score += 65;
+      }
+
+      // Minor boost for segment words only if there is already an identity match or multi-token query
+      const segmentWords = normSegmento.split(/\s+/);
+      const matchedSegmentTokens = queryTokens.filter((token) => tokenMatchesWords(segmentWords, token));
+      if (matchedSegmentTokens.length > 0) {
+        score += matchedSegmentTokens.length * 10;
       }
     }
 
@@ -1585,8 +2134,8 @@ export function searchCompanies(
       if (nameMatches) score += 40;
     }
 
-    // Quality threshold: must have high confidence (exact, substring, or full token match)
-    if (score >= 45) {
+    // Quality threshold: must have high confidence (exact, substring, or identity token match)
+    if (score >= 40) {
       scoredResults.push({ comp, score });
     }
   }

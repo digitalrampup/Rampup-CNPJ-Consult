@@ -181,7 +181,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                 </>
               )}
             </div>
-            <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+            <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
               Ficha oficial com todos os campos cadastrais, fiscais e societários da Receita Federal
             </p>
           </div>
@@ -646,7 +646,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                   {cnaePrincipal?.descricao || 'Não informada'}
                 </p>
                 {cnaePrincipal?.secao && (
-                  <p className={`mt-1 text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                  <p className={`mt-1 text-xs ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
                     Seção {cnaePrincipal.secao} · Divisão {cnaePrincipal.divisao || '-'} · Grupo {cnaePrincipal.grupo || '-'}
                   </p>
                 )}
@@ -654,7 +654,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
 
               {/* CNAEs Secundários */}
               <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-400">
+                <div className={`flex items-center justify-between text-xs font-bold ${isDark ? 'text-slate-400' : 'text-slate-900'}`}>
                   <span>Atividades Secundárias ({filteredCnaesSecundarios.length} de {cnaesSecundarios.length})</span>
                   {cnaesSecundarios.length > 0 && (
                     <button
@@ -685,7 +685,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                           <span className="font-semibold text-slate-900 dark:text-white block">
                             {act.descricao}
                           </span>
-                          <span className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+                          <span className={`text-[11px] font-medium ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>
                             Seção {act.secao || '-'} · Divisão {act.divisao || '-'}
                           </span>
                         </div>
@@ -714,7 +714,7 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                     4. Quadro de Sócios e Administradores (QSA)
                   </h3>
                 </div>
-                <span className="text-xs font-bold text-slate-700 dark:text-slate-400">
+                <span className={`text-xs font-bold ${isDark ? 'text-slate-400' : 'text-slate-900'}`}>
                   {socios.length} membro(s) registrado(s)
                 </span>
               </div>
@@ -737,12 +737,12 @@ export function DynamicInspector({ data, theme = 'light' }: DynamicInspectorProp
                             {socio.qualificacao_socio?.descricao || 'Sócio'}
                           </span>
                         </div>
-                        <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-400 font-medium">
+                        <span className={`text-[11px] font-mono px-2 py-0.5 rounded font-medium ${isDark ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-800 font-bold'}`}>
                           {socio.tipo || 'Pessoa'}
                         </span>
                       </div>
 
-                      <div className="pt-1 border-t flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-700 dark:text-slate-400 font-medium">
+                      <div className={`pt-1 border-t flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-medium ${isDark ? 'text-slate-400' : 'text-slate-800'}`}>
                         {socio.data_entrada && (
                           <span>Entrada: <strong className="text-slate-900 dark:text-slate-200 font-bold">{formatDate(socio.data_entrada)}</strong></span>
                         )}
@@ -998,7 +998,7 @@ function DataFieldItem({
         isDark ? 'bg-slate-950/40 border-slate-800/80' : 'bg-slate-50/70 border-slate-200/80'
       } ${className}`}
     >
-      <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">
+      <span className={`text-[11px] font-bold uppercase tracking-wider block mb-1 ${isDark ? 'text-slate-400' : 'text-slate-900'}`}>
         {label}
       </span>
       <div className="flex items-center justify-between gap-2">
@@ -1099,11 +1099,11 @@ function DynamicNode({
           }`}
         >
           <div className="flex items-center gap-2 min-w-0">
-            <span className={isDark ? 'text-slate-400 group-hover:text-slate-200' : 'text-slate-500 group-hover:text-slate-900'}>
+            <span className={isDark ? 'text-slate-400 group-hover:text-slate-200' : 'text-slate-600 group-hover:text-slate-900'}>
               {isExpanded ? <ChevronDownIcon className="w-3.5 h-3.5" /> : <ChevronRightIcon className="w-3.5 h-3.5" />}
             </span>
-            <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>{humanLabel}</span>
-            <span className="font-mono text-[11px] text-slate-400">{nodeKey}</span>
+            <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-900 font-bold'}`}>{humanLabel}</span>
+            <span className={`font-mono text-[11px] ${isDark ? 'text-slate-400' : 'text-slate-700 font-semibold'}`}>{nodeKey}</span>
             <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
               [{count}]
             </span>
@@ -1113,7 +1113,7 @@ function DynamicNode({
             <button
               type="button"
               onClick={(e) => handleCopy(e, JSON.stringify(value, null, 2))}
-              className={`p-1 ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'}`}
+              className={`p-1 ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}
               title="Copiar JSON"
             >
               {copied ? <CheckIcon className="w-3.5 h-3.5 text-emerald-500" /> : <CopyIcon className="w-3.5 h-3.5" />}
@@ -1124,7 +1124,7 @@ function DynamicNode({
         {isExpanded && (
           <div className="space-y-1 mt-1">
             {count === 0 ? (
-              <div className="ml-6 py-1 text-slate-400 text-xs italic">(Lista vazia)</div>
+              <div className="ml-6 py-1 text-slate-500 dark:text-slate-400 text-xs italic">(Lista vazia)</div>
             ) : (
               value.map((item: any, idx: number) => (
                 <DynamicNode
@@ -1155,11 +1155,11 @@ function DynamicNode({
           }`}
         >
           <div className="flex items-center gap-2 min-w-0">
-            <span className={isDark ? 'text-slate-400 group-hover:text-slate-200' : 'text-slate-500 group-hover:text-slate-900'}>
+            <span className={isDark ? 'text-slate-400 group-hover:text-slate-200' : 'text-slate-600 group-hover:text-slate-900'}>
               {isExpanded ? <ChevronDownIcon className="w-3.5 h-3.5" /> : <ChevronRightIcon className="w-3.5 h-3.5" />}
             </span>
-            <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>{humanLabel}</span>
-            <span className="font-mono text-[11px] text-slate-400">{nodeKey}</span>
+            <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-900 font-bold'}`}>{humanLabel}</span>
+            <span className={`font-mono text-[11px] ${isDark ? 'text-slate-400' : 'text-slate-700 font-semibold'}`}>{nodeKey}</span>
             <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
               ({keys.length})
             </span>
@@ -1169,7 +1169,7 @@ function DynamicNode({
             <button
               type="button"
               onClick={(e) => handleCopy(e, JSON.stringify(value, null, 2))}
-              className={`p-1 ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'}`}
+              className={`p-1 ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}
               title="Copiar JSON"
             >
               {copied ? <CheckIcon className="w-3.5 h-3.5 text-emerald-500" /> : <CopyIcon className="w-3.5 h-3.5" />}
@@ -1180,7 +1180,7 @@ function DynamicNode({
         {isExpanded && (
           <div className="space-y-1 mt-1">
             {keys.length === 0 ? (
-              <div className="ml-6 py-1 text-slate-400 text-xs italic">(Objeto vazio)</div>
+              <div className="ml-6 py-1 text-slate-500 dark:text-slate-400 text-xs italic">(Objeto vazio)</div>
             ) : (
               keys.map((k) => (
                 <DynamicNode
@@ -1208,8 +1208,8 @@ function DynamicNode({
       } ${isDark ? 'hover:bg-slate-800/40' : 'hover:bg-slate-50'}`}
     >
       <div className="flex items-center gap-2 min-w-0">
-        <span className={`font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>{humanLabel}</span>
-        <span className="font-mono text-[11px] text-slate-400">{nodeKey}</span>
+        <span className={`font-medium ${isDark ? 'text-slate-300' : 'text-slate-900 font-semibold'}`}>{humanLabel}</span>
+        <span className={`font-mono text-[11px] ${isDark ? 'text-slate-400' : 'text-slate-700 font-semibold'}`}>{nodeKey}</span>
       </div>
 
       <div className="flex items-center gap-2 self-start sm:self-auto">
@@ -1219,7 +1219,7 @@ function DynamicNode({
             type="button"
             onClick={(e) => handleCopy(e, String(value))}
             className={`opacity-0 group-hover:opacity-100 p-0.5 transition-all ${
-              isDark ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'
+              isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'
             }`}
             title="Copiar valor"
           >
@@ -1234,7 +1234,7 @@ function DynamicNode({
 function FormattedPrimitiveValue({ nodeKey, value, isDark = false }: { nodeKey: string; value: any; isDark?: boolean }) {
   if (value === null || value === undefined || value === '') {
     return (
-      <span className="text-slate-400 italic font-mono text-[11px]">
+      <span className="text-slate-600 dark:text-slate-400 italic font-mono text-[11px]">
         {value === '' ? '"" (vazio)' : 'null'}
       </span>
     );

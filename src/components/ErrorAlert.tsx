@@ -54,7 +54,7 @@ export function ErrorAlert({
                 type="button"
                 onClick={onDismiss}
                 className={`p-1 transition-colors cursor-pointer ${
-                  isDark ? 'text-slate-400 hover:text-slate-200' : 'text-slate-400 hover:text-slate-600'
+                  isDark ? 'text-slate-400 hover:text-slate-200' : 'text-slate-700 hover:text-slate-950'
                 }`}
                 title="Fechar alerta"
               >
